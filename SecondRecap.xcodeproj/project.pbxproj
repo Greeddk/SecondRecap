@@ -38,6 +38,8 @@
 		429AA53B2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA53A2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift */; };
 		429AA53D2B8DF3B3008F3A42 /* CoinSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA53C2B8DF3B3008F3A42 /* CoinSearchView.swift */; };
 		429AA53F2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA53E2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift */; };
+		429AA5412B8DFAD0008F3A42 /* FavoriteCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5402B8DFAD0008F3A42 /* FavoriteCoinView.swift */; };
+		429AA5432B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5422B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		429AA53A2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTrendingTableViewCell.swift; sourceTree = "<group>"; };
 		429AA53C2B8DF3B3008F3A42 /* CoinSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSearchView.swift; sourceTree = "<group>"; };
 		429AA53E2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedCoinTableViewCell.swift; sourceTree = "<group>"; };
+		429AA5402B8DFAD0008F3A42 /* FavoriteCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoinView.swift; sourceTree = "<group>"; };
+		429AA5422B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCardCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				429AA4FE2B8DB056008F3A42 /* FavoriteCoinViewController.swift */,
+				429AA5402B8DFAD0008F3A42 /* FavoriteCoinView.swift */,
+				429AA5422B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift */,
 			);
 			path = FavoriteCoinView;
 			sourceTree = "<group>";
@@ -313,7 +319,9 @@
 				429AA51E2B8DC5A1008F3A42 /* UIVIew+Extension.swift in Sources */,
 				429AA4ED2B8DAF78008F3A42 /* CoinTrendingViewController.swift in Sources */,
 				429AA5332B8DD357008F3A42 /* CoinTrendingViewModel.swift in Sources */,
+				429AA5412B8DFAD0008F3A42 /* FavoriteCoinView.swift in Sources */,
 				429AA52B2B8DC951008F3A42 /* FavoriteTableViewCell.swift in Sources */,
+				429AA5432B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift in Sources */,
 				429AA4E92B8DAF78008F3A42 /* AppDelegate.swift in Sources */,
 				429AA52F2B8DC9C6008F3A42 /* BaseCollectionViewCell.swift in Sources */,
 				429AA53B2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift in Sources */,

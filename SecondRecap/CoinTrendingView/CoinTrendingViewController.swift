@@ -97,7 +97,7 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
         if collectionView.tag == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCoinCollectionViewCell.identifier, for: indexPath) as! FavoriteCoinCollectionViewCell
             cell.coinName.text = "Bitcoin"
-            cell.coinImage.image = UIImage(systemName: "person")
+            cell.icon.image = UIImage(systemName: "person")
             cell.coinSubname.text = "BTC"
             cell.price.text = "₩74,213,566"
             return cell

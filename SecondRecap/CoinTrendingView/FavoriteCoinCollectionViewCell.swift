@@ -11,7 +11,7 @@ import SnapKit
 class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
     
     let backView = UIView()
-    let coinImage = UIImageView()
+    let icon = UIImageView()
     let coinName = UILabel()
     let coinSubname = UILabel()
     let price = UILabel()
@@ -26,13 +26,13 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureHierarchy() {
-        contentView.addSubviews([backView ,coinImage, coinName, coinSubname, price, changePercentage])
+        contentView.addSubviews([backView ,icon, coinName, coinSubname, price, changePercentage])
     }
     
     override func configureView() {
         backView.backgroundColor = .customLightGray
         backView.layer.cornerRadius = 20
-        coinImage.layer.cornerRadius = 16
+        icon.layer.cornerRadius = 16
         coinName.font = .boldSystemFont(ofSize: 17)
         coinName.textColor = .customBlack
         coinSubname.font = .systemFont(ofSize: 12)
@@ -50,14 +50,14 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
             make.edges.equalTo(contentView).inset(8)
         }
         
-        coinImage.snp.makeConstraints { make in
+        icon.snp.makeConstraints { make in
             make.top.leading.equalTo(backView).offset(16)
             make.size.equalTo(32)
         }
         
         coinName.snp.makeConstraints { make in
-            make.top.equalTo(coinImage)
-            make.leading.equalTo(coinImage.snp.trailing).offset(8)
+            make.top.equalTo(icon)
+            make.leading.equalTo(icon.snp.trailing).offset(8)
         }
         
         coinSubname.snp.makeConstraints { make in
@@ -66,12 +66,12 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
         }
         
         changePercentage.snp.makeConstraints { make in
-            make.leading.equalTo(coinImage)
+            make.leading.equalTo(icon)
             make.bottom.equalTo(backView.snp.bottom).offset(-16)
         }
         
         price.snp.makeConstraints { make in
-            make.leading.equalTo(coinImage)
+            make.leading.equalTo(icon)
             make.bottom.equalTo(changePercentage.snp.top).offset(-8)
         }
     }

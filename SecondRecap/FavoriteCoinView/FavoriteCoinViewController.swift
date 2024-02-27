@@ -7,23 +7,42 @@
 
 import UIKit
 
-class FavoriteCoinViewController: UIViewController {
+class FavoriteCoinViewController: BaseViewController {
+    
+    let mainView = FavoriteCoinView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func configureViewController() {
+        navigationItem.title = "Favorite Coin"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
+        mainView.collectionView.register(CoinCardCollectionViewCell.self, forCellWithReuseIdentifier: CoinCardCollectionViewCell.identifier)
     }
-    */
 
+}
+
+extension FavoriteCoinViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinCardCollectionViewCell.identifier, for: indexPath) as! CoinCardCollectionViewCell
+        cell.icon.image = UIImage(systemName: "person")
+        cell.coinName.text = "Bitcoin"
+        cell.coinSubname.text = "BTC"
+        cell.price.text = "₩69,234,245"
+        return cell
+    }
+    
 }
