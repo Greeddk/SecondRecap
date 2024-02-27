@@ -21,6 +21,8 @@
 		429AA50B2B8DB0DB008F3A42 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA50A2B8DB0DB008F3A42 /* DGChartsDynamic */; };
 		429AA50E2B8DB0E9008F3A42 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA50D2B8DB0E9008F3A42 /* SnapKit */; };
 		429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */; };
+		429AA5132B8DB55C008F3A42 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */; };
+		429AA5152B8DB60C008F3A42 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5142B8DB60C008F3A42 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		429AA4FE2B8DB056008F3A42 /* FavoriteCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoinViewController.swift; sourceTree = "<group>"; };
 		429AA5002B8DB064008F3A42 /* CoinChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartViewController.swift; sourceTree = "<group>"; };
 		429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		429AA5142B8DB60C008F3A42 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				429AA50F2B8DB1DD008F3A42 /* Extension */,
 				429AA4E82B8DAF78008F3A42 /* AppDelegate.swift */,
 				429AA4EA2B8DAF78008F3A42 /* SceneDelegate.swift */,
+				429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */,
+				429AA5142B8DB60C008F3A42 /* SettingViewController.swift */,
 				429AA4EC2B8DAF78008F3A42 /* CoinTrandingViewController.swift */,
 				429AA4FC2B8DB045008F3A42 /* CoinSearchViewController.swift */,
 				429AA4FE2B8DB056008F3A42 /* FavoriteCoinViewController.swift */,
@@ -176,10 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				429AA5132B8DB55C008F3A42 /* TabBarViewController.swift in Sources */,
 				429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */,
 				429AA4ED2B8DAF78008F3A42 /* CoinTrandingViewController.swift in Sources */,
 				429AA4E92B8DAF78008F3A42 /* AppDelegate.swift in Sources */,
 				429AA4FF2B8DB056008F3A42 /* FavoriteCoinViewController.swift in Sources */,
+				429AA5152B8DB60C008F3A42 /* SettingViewController.swift in Sources */,
 				429AA4EB2B8DAF78008F3A42 /* SceneDelegate.swift in Sources */,
 				429AA5012B8DB064008F3A42 /* CoinChartViewController.swift in Sources */,
 				429AA4FD2B8DB045008F3A42 /* CoinSearchViewController.swift in Sources */,
@@ -332,7 +340,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = CoinWorld;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -365,7 +372,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = CoinWorld;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
