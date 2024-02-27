@@ -1,5 +1,5 @@
 //
-//  BaseView.swift
+//  BaseCollectionViewCell.swift
 //  SecondRecap
 //
 //  Created by Greed on 2/27/24.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BaseView: UIView, CodeBase {
-
+class BaseCollectionViewCell: UICollectionViewCell, CodeBase {
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureHierarchy()
@@ -21,7 +21,7 @@ class BaseView: UIView, CodeBase {
     }
     
     func configureHierarchy() {
-    
+        
     }
     
     func configureView() {
@@ -32,5 +32,4 @@ class BaseView: UIView, CodeBase {
         
     }
     
-
 }

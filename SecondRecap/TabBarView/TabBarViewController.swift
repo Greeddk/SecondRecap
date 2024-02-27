@@ -18,7 +18,7 @@ class TabBarViewController: UITabBarController {
         var viewContollerType: UIViewController {
             switch self {
             case .coinTrending:
-                UINavigationController(rootViewController: CoinTrandingViewController())
+                UINavigationController(rootViewController: CoinTrendingViewController())
             case .coinSearch:
                 UINavigationController(rootViewController: CoinSearchViewController())
             case .favoriteCoin:

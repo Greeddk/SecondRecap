@@ -1,5 +1,5 @@
 //
-//  BaseView.swift
+//  BaseTableViewCell.swift
 //  SecondRecap
 //
 //  Created by Greed on 2/27/24.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class BaseView: UIView, CodeBase {
+class BaseTableViewCell: UITableViewCell, CodeBase {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureHierarchy()
         configureView()
         configureLayout()
@@ -21,7 +21,7 @@ class BaseView: UIView, CodeBase {
     }
     
     func configureHierarchy() {
-    
+        
     }
     
     func configureView() {
@@ -31,6 +31,5 @@ class BaseView: UIView, CodeBase {
     func configureLayout() {
         
     }
-    
 
 }
