@@ -36,6 +36,8 @@
 		429AA5362B8DD542008F3A42 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5352B8DD542008F3A42 /* Observable.swift */; };
 		429AA5382B8DE22A008F3A42 /* CoinTrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5372B8DE22A008F3A42 /* CoinTrendingCollectionViewCell.swift */; };
 		429AA53B2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA53A2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift */; };
+		429AA53D2B8DF3B3008F3A42 /* CoinSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA53C2B8DF3B3008F3A42 /* CoinSearchView.swift */; };
+		429AA53F2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA53E2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		429AA5352B8DD542008F3A42 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		429AA5372B8DE22A008F3A42 /* CoinTrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		429AA53A2B8DE444008F3A42 /* CoinTrendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTrendingTableViewCell.swift; sourceTree = "<group>"; };
+		429AA53C2B8DF3B3008F3A42 /* CoinSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSearchView.swift; sourceTree = "<group>"; };
+		429AA53E2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedCoinTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				429AA4FC2B8DB045008F3A42 /* CoinSearchViewController.swift */,
+				429AA53C2B8DF3B3008F3A42 /* CoinSearchView.swift */,
+				429AA53E2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift */,
 			);
 			path = CoinSearchView;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 				429AA5292B8DC8D3008F3A42 /* BaseViewController.swift in Sources */,
 				429AA4FF2B8DB056008F3A42 /* FavoriteCoinViewController.swift in Sources */,
 				429AA5182B8DC304008F3A42 /* BaseView.swift in Sources */,
+				429AA53D2B8DF3B3008F3A42 /* CoinSearchView.swift in Sources */,
 				429AA5312B8DCBC3008F3A42 /* FavoriteCoinCollectionViewCell.swift in Sources */,
 				429AA5152B8DB60C008F3A42 /* SettingViewController.swift in Sources */,
 				429AA51A2B8DC3B1008F3A42 /* CodeBaseProtocol.swift in Sources */,
@@ -321,6 +328,7 @@
 				429AA5362B8DD542008F3A42 /* Observable.swift in Sources */,
 				429AA5382B8DE22A008F3A42 /* CoinTrendingCollectionViewCell.swift in Sources */,
 				429AA5012B8DB064008F3A42 /* CoinChartViewController.swift in Sources */,
+				429AA53F2B8DF512008F3A42 /* SearchedCoinTableViewCell.swift in Sources */,
 				429AA4FD2B8DB045008F3A42 /* CoinSearchViewController.swift in Sources */,
 				429AA5272B8DC6E8008F3A42 /* CoinTrendingView.swift in Sources */,
 			);
