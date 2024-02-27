@@ -23,6 +23,9 @@
 		429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */; };
 		429AA5132B8DB55C008F3A42 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */; };
 		429AA5152B8DB60C008F3A42 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5142B8DB60C008F3A42 /* SettingViewController.swift */; };
+		429AA5182B8DC304008F3A42 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5172B8DC304008F3A42 /* BaseView.swift */; };
+		429AA51A2B8DC3B1008F3A42 /* CodeBaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5192B8DC3B1008F3A42 /* CodeBaseProtocol.swift */; };
+		429AA51E2B8DC5A1008F3A42 /* UIVIew+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA51D2B8DC5A1008F3A42 /* UIVIew+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		429AA5142B8DB60C008F3A42 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		429AA5172B8DC304008F3A42 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		429AA5192B8DC3B1008F3A42 /* CodeBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseProtocol.swift; sourceTree = "<group>"; };
+		429AA51D2B8DC5A1008F3A42 /* UIVIew+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,15 +82,17 @@
 		429AA4E72B8DAF78008F3A42 /* SecondRecap */ = {
 			isa = PBXGroup;
 			children = (
+				429AA5252B8DC67E008F3A42 /* Model */,
+				429AA5162B8DC2F3008F3A42 /* Base */,
 				429AA50F2B8DB1DD008F3A42 /* Extension */,
+				429AA5212B8DC60B008F3A42 /* TabBarView */,
+				429AA51F2B8DC5E3008F3A42 /* CoinTrendingView */,
+				429AA5222B8DC618008F3A42 /* CoinSearchView */,
+				429AA5232B8DC624008F3A42 /* FavoriteCoinView */,
+				429AA5202B8DC5F8008F3A42 /* SettingView */,
+				429AA5242B8DC631008F3A42 /* CoinChartView */,
 				429AA4E82B8DAF78008F3A42 /* AppDelegate.swift */,
 				429AA4EA2B8DAF78008F3A42 /* SceneDelegate.swift */,
-				429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */,
-				429AA5142B8DB60C008F3A42 /* SettingViewController.swift */,
-				429AA4EC2B8DAF78008F3A42 /* CoinTrandingViewController.swift */,
-				429AA4FC2B8DB045008F3A42 /* CoinSearchViewController.swift */,
-				429AA4FE2B8DB056008F3A42 /* FavoriteCoinViewController.swift */,
-				429AA5002B8DB064008F3A42 /* CoinChartViewController.swift */,
 				429AA4F12B8DAF79008F3A42 /* Assets.xcassets */,
 				429AA4F32B8DAF79008F3A42 /* LaunchScreen.storyboard */,
 				429AA4F62B8DAF79008F3A42 /* Info.plist */,
@@ -96,8 +104,73 @@
 			isa = PBXGroup;
 			children = (
 				429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */,
+				429AA51D2B8DC5A1008F3A42 /* UIVIew+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		429AA5162B8DC2F3008F3A42 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5192B8DC3B1008F3A42 /* CodeBaseProtocol.swift */,
+				429AA5172B8DC304008F3A42 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		429AA51F2B8DC5E3008F3A42 /* CoinTrendingView */ = {
+			isa = PBXGroup;
+			children = (
+				429AA4EC2B8DAF78008F3A42 /* CoinTrandingViewController.swift */,
+			);
+			path = CoinTrendingView;
+			sourceTree = "<group>";
+		};
+		429AA5202B8DC5F8008F3A42 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5142B8DB60C008F3A42 /* SettingViewController.swift */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		429AA5212B8DC60B008F3A42 /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5122B8DB55C008F3A42 /* TabBarViewController.swift */,
+			);
+			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		429AA5222B8DC618008F3A42 /* CoinSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				429AA4FC2B8DB045008F3A42 /* CoinSearchViewController.swift */,
+			);
+			path = CoinSearchView;
+			sourceTree = "<group>";
+		};
+		429AA5232B8DC624008F3A42 /* FavoriteCoinView */ = {
+			isa = PBXGroup;
+			children = (
+				429AA4FE2B8DB056008F3A42 /* FavoriteCoinViewController.swift */,
+			);
+			path = FavoriteCoinView;
+			sourceTree = "<group>";
+		};
+		429AA5242B8DC631008F3A42 /* CoinChartView */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5002B8DB064008F3A42 /* CoinChartViewController.swift */,
+			);
+			path = CoinChartView;
+			sourceTree = "<group>";
+		};
+		429AA5252B8DC67E008F3A42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +257,13 @@
 			files = (
 				429AA5132B8DB55C008F3A42 /* TabBarViewController.swift in Sources */,
 				429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */,
+				429AA51E2B8DC5A1008F3A42 /* UIVIew+Extension.swift in Sources */,
 				429AA4ED2B8DAF78008F3A42 /* CoinTrandingViewController.swift in Sources */,
 				429AA4E92B8DAF78008F3A42 /* AppDelegate.swift in Sources */,
 				429AA4FF2B8DB056008F3A42 /* FavoriteCoinViewController.swift in Sources */,
+				429AA5182B8DC304008F3A42 /* BaseView.swift in Sources */,
 				429AA5152B8DB60C008F3A42 /* SettingViewController.swift in Sources */,
+				429AA51A2B8DC3B1008F3A42 /* CodeBaseProtocol.swift in Sources */,
 				429AA4EB2B8DAF78008F3A42 /* SceneDelegate.swift in Sources */,
 				429AA5012B8DB064008F3A42 /* CoinChartViewController.swift in Sources */,
 				429AA4FD2B8DB045008F3A42 /* CoinSearchViewController.swift in Sources */,

@@ -10,6 +10,7 @@ import SnapKit
 
 class CoinTrandingViewController: UIViewController {
     
+    
     let button = UIButton()
 
     override func viewDidLoad() {
