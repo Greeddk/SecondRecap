@@ -20,6 +20,7 @@
 		429AA5092B8DB0DB008F3A42 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA5082B8DB0DB008F3A42 /* DGCharts */; };
 		429AA50B2B8DB0DB008F3A42 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA50A2B8DB0DB008F3A42 /* DGChartsDynamic */; };
 		429AA50E2B8DB0E9008F3A42 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA50D2B8DB0E9008F3A42 /* SnapKit */; };
+		429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		429AA4FC2B8DB045008F3A42 /* CoinSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSearchViewController.swift; sourceTree = "<group>"; };
 		429AA4FE2B8DB056008F3A42 /* FavoriteCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoinViewController.swift; sourceTree = "<group>"; };
 		429AA5002B8DB064008F3A42 /* CoinChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartViewController.swift; sourceTree = "<group>"; };
+		429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		429AA4E72B8DAF78008F3A42 /* SecondRecap */ = {
 			isa = PBXGroup;
 			children = (
+				429AA50F2B8DB1DD008F3A42 /* Extension */,
 				429AA4E82B8DAF78008F3A42 /* AppDelegate.swift */,
 				429AA4EA2B8DAF78008F3A42 /* SceneDelegate.swift */,
 				429AA4EC2B8DAF78008F3A42 /* CoinTrandingViewController.swift */,
@@ -81,6 +84,14 @@
 				429AA4F62B8DAF79008F3A42 /* Info.plist */,
 			);
 			path = SecondRecap;
+			sourceTree = "<group>";
+		};
+		429AA50F2B8DB1DD008F3A42 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */,
 				429AA4ED2B8DAF78008F3A42 /* CoinTrandingViewController.swift in Sources */,
 				429AA4E92B8DAF78008F3A42 /* AppDelegate.swift in Sources */,
 				429AA4FF2B8DB056008F3A42 /* FavoriteCoinViewController.swift in Sources */,
