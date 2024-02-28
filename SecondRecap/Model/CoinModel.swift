@@ -8,12 +8,16 @@
 import Foundation
 
 struct CoinTrending: Decodable {
-    let coins: [Coin]
+    let coins: [Item]
     let nfts: [NFT]
 }
 
+struct Item: Decodable {
+    let item: Coin
+}
+
 struct Coin: Decodable {
-    let coin_id: Int
+    let id: String
     let name: String
     let symbol: String
     let icon: String // Coin image / 원래 이름 small
@@ -21,7 +25,7 @@ struct Coin: Decodable {
     let data: CoinPrice
     
     enum CodingKeys: String, CodingKey {
-        case coin_id
+        case id
         case name
         case symbol
         case icon = "small"
@@ -39,16 +43,21 @@ struct NFT: Decodable {
 
 struct CoinPrice: Decodable {
     let price: String
-    let price_change_percentage_24h: [ChangePercent]
+    let change_percentage: ChangePercent
+    
+    enum CodingKeys: String, CodingKey {
+        case price
+        case change_percentage = "price_change_percentage_24h"
+    }
 }
 
 struct NFTPrice: Decodable {
     let floor_price: String
-    let percentage_change: String // 원래 이름 floor_price_in_usd_24h_percentage_change
+    let change_percentage: String // 원래 이름 floor_price_in_usd_24h_percentage_change
     
     enum CodingKeys: String, CodingKey {
         case floor_price
-        case percentage_change = "floor_price_in_usd_24h_percentage_change"
+        case change_percentage = "floor_price_in_usd_24h_percentage_change"
     }
 }
 

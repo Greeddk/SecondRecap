@@ -7,15 +7,22 @@
 
 import Foundation
 
-class Observable {
+class Observable<T> {
     
-    var closure: (() -> Void)?
+    var closure: ((T) -> Void)?
     
-    init() {
-        
+    var value: T {
+        didSet {
+            closure?(value)
+        }
     }
     
-    func bind() {
-        
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    func bind(_ closure: @escaping (T) -> Void ) {
+        closure(value)
+        self.closure = closure
     }
 }
