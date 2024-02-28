@@ -12,7 +12,7 @@ class SearchedCoinTableViewCell: BaseTableViewCell {
     
     let icon = UIImageView()
     let coinName = UILabel()
-    let coinSubname = UILabel()
+    let coinSymbolname = UILabel()
     let favoriteButton = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -24,7 +24,7 @@ class SearchedCoinTableViewCell: BaseTableViewCell {
     }
     
     override func configureHierarchy() {
-        contentView.addSubviews([icon, coinName, coinSubname, favoriteButton])
+        contentView.addSubviews([icon, coinName, coinSymbolname, favoriteButton])
     }
     
     override func configureLayout() {
@@ -39,7 +39,7 @@ class SearchedCoinTableViewCell: BaseTableViewCell {
             make.top.equalTo(icon)
         }
         
-        coinSubname.snp.makeConstraints { make in
+        coinSymbolname.snp.makeConstraints { make in
             make.leading.equalTo(coinName)
             make.top.equalTo(coinName.snp.bottom)
         }
@@ -54,8 +54,8 @@ class SearchedCoinTableViewCell: BaseTableViewCell {
     override func configureView() {
         coinName.font = .boldSystemFont(ofSize: 17)
         coinName.textColor = .customBlack
-        coinSubname.font = .systemFont(ofSize: 12)
-        coinSubname.textColor = .customLightBlack
+        coinSymbolname.font = .systemFont(ofSize: 12)
+        coinSymbolname.textColor = .customLightBlack
     }
     
 }

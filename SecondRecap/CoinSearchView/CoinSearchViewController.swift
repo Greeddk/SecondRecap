@@ -41,7 +41,7 @@ extension CoinSearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchedCoinTableViewCell.identifier, for: indexPath) as! SearchedCoinTableViewCell
         cell.icon.image = UIImage(systemName: "person")
         cell.coinName.text = "Bitcoin"
-        cell.coinSubname.text = "BTC"
+        cell.coinSymbolname.text = "BTC"
         cell.favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)
         return cell
     }

@@ -40,7 +40,7 @@ extension FavoriteCoinViewController: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinCardCollectionViewCell.identifier, for: indexPath) as! CoinCardCollectionViewCell
         cell.icon.image = UIImage(systemName: "person")
         cell.coinName.text = "Bitcoin"
-        cell.coinSubname.text = "BTC"
+        cell.coinSymbolname.text = "BTC"
         cell.price.text = "₩69,234,245"
         return cell
     }

@@ -13,7 +13,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     let rank = UILabel()
     let icon = UIImageView()
     let coinName = UILabel()
-    let coinSubname = UILabel()
+    let coinSymbolname = UILabel()
     let price = UILabel()
     let changePercentage = UILabel()
     
@@ -26,7 +26,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureHierarchy() {
-        contentView.addSubviews([rank, icon, coinName, coinSubname, price, changePercentage])
+        contentView.addSubviews([rank, icon, coinName, coinSymbolname, price, changePercentage])
     }
     
     override func configureLayout() {
@@ -46,7 +46,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
             make.top.equalTo(icon)
         }
         
-        coinSubname.snp.makeConstraints { make in
+        coinSymbolname.snp.makeConstraints { make in
             make.leading.equalTo(coinName)
             make.top.equalTo(coinName.snp.bottom)
         }
@@ -57,7 +57,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         }
         
         changePercentage.snp.makeConstraints { make in
-            make.top.equalTo(coinSubname)
+            make.top.equalTo(coinSymbolname)
             make.trailing.equalTo(price.snp.trailing)
         }
     }
@@ -66,8 +66,8 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         rank.font = .boldSystemFont(ofSize: 22)
         coinName.font = .boldSystemFont(ofSize: 17)
         coinName.textColor = .customBlack
-        coinSubname.font = .systemFont(ofSize: 12)
-        coinSubname.textColor = .customLightBlack
+        coinSymbolname.font = .systemFont(ofSize: 12)
+        coinSymbolname.textColor = .customLightBlack
         price.textColor = .customBlack
         price.font = .systemFont(ofSize: 17)
         changePercentage.text = "+0.64%"

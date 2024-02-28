@@ -12,7 +12,7 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
     let backView = UIView()
     let icon = UIImageView()
     let coinName = UILabel()
-    let coinSubname = UILabel()
+    let coinSymbolname = UILabel()
     let price = UILabel()
     let changePercentage = UILabel()
     
@@ -26,7 +26,7 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
     
     override func configureHierarchy() {
         contentView.addSubviews([backView])
-        backView.addSubviews([icon, coinName, coinSubname, price, changePercentage])
+        backView.addSubviews([icon, coinName, coinSymbolname, price, changePercentage])
     }
     
     override func configureLayout() {
@@ -44,7 +44,7 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
             make.top.equalTo(icon)
         }
         
-        coinSubname.snp.makeConstraints { make in
+        coinSymbolname.snp.makeConstraints { make in
             make.leading.equalTo(coinName)
             make.top.equalTo(coinName.snp.bottom)
         }
@@ -73,8 +73,8 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
         
         coinName.font = .boldSystemFont(ofSize: 17)
         coinName.textColor = .customBlack
-        coinSubname.font = .systemFont(ofSize: 12)
-        coinSubname.textColor = .customLightBlack
+        coinSymbolname.font = .systemFont(ofSize: 12)
+        coinSymbolname.textColor = .customLightBlack
         price.textColor = .customBlack
         price.font = .boldSystemFont(ofSize: 17)
         changePercentage.text = "+0.64%"

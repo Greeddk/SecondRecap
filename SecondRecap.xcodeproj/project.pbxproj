@@ -42,6 +42,9 @@
 		429AA56D2B8F1497008F3A42 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA56C2B8F1497008F3A42 /* DGCharts */; };
 		429AA5702B8F14A8008F3A42 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA56F2B8F14A8008F3A42 /* Kingfisher */; };
 		429AA5732B8F14B2008F3A42 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 429AA5722B8F14B2008F3A42 /* Alamofire */; };
+		429AA5762B8F3A3F008F3A42 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5752B8F3A3F008F3A42 /* CoinModel.swift */; };
+		429AA5792B8F3E8E008F3A42 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA5782B8F3E8E008F3A42 /* APIManager.swift */; };
+		429AA57B2B8F45A8008F3A42 /* CoinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA57A2B8F45A8008F3A42 /* CoinAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		429AA5402B8DFAD0008F3A42 /* FavoriteCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoinView.swift; sourceTree = "<group>"; };
 		429AA5422B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		429AA5442B8E1765008F3A42 /* CoinChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartView.swift; sourceTree = "<group>"; };
+		429AA5752B8F3A3F008F3A42 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		429AA5782B8F3E8E008F3A42 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		429AA57A2B8F45A8008F3A42 /* CoinAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 		429AA4E72B8DAF78008F3A42 /* SecondRecap */ = {
 			isa = PBXGroup;
 			children = (
+				429AA5772B8F3E7F008F3A42 /* Network */,
 				429AA5392B8DE316008F3A42 /* DataBase */,
 				429AA5342B8DD539008F3A42 /* Observable */,
 				429AA5252B8DC67E008F3A42 /* Model */,
@@ -217,6 +224,7 @@
 		429AA5252B8DC67E008F3A42 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				429AA5752B8F3A3F008F3A42 /* CoinModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,6 +250,15 @@
 				429AA5322B8DD357008F3A42 /* CoinTrendingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		429AA5772B8F3E7F008F3A42 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5782B8F3E8E008F3A42 /* APIManager.swift */,
+				429AA57A2B8F45A8008F3A42 /* CoinAPI.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,7 +351,9 @@
 				429AA5112B8DB1EA008F3A42 /* UIColor+Extension.swift in Sources */,
 				429AA51E2B8DC5A1008F3A42 /* UIVIew+Extension.swift in Sources */,
 				429AA4ED2B8DAF78008F3A42 /* CoinTrendingViewController.swift in Sources */,
+				429AA5792B8F3E8E008F3A42 /* APIManager.swift in Sources */,
 				429AA5332B8DD357008F3A42 /* CoinTrendingViewModel.swift in Sources */,
+				429AA57B2B8F45A8008F3A42 /* CoinAPI.swift in Sources */,
 				429AA5412B8DFAD0008F3A42 /* FavoriteCoinView.swift in Sources */,
 				429AA52B2B8DC951008F3A42 /* FavoriteTableViewCell.swift in Sources */,
 				429AA5432B8DFC23008F3A42 /* CoinCardCollectionViewCell.swift in Sources */,
@@ -349,6 +368,7 @@
 				429AA5152B8DB60C008F3A42 /* SettingViewController.swift in Sources */,
 				429AA51A2B8DC3B1008F3A42 /* CodeBaseProtocol.swift in Sources */,
 				429AA4EB2B8DAF78008F3A42 /* SceneDelegate.swift in Sources */,
+				429AA5762B8F3A3F008F3A42 /* CoinModel.swift in Sources */,
 				429AA5362B8DD542008F3A42 /* Observable.swift in Sources */,
 				429AA5382B8DE22A008F3A42 /* CoinTrendingCollectionViewCell.swift in Sources */,
 				429AA5012B8DB064008F3A42 /* CoinChartViewController.swift in Sources */,
