@@ -42,7 +42,7 @@ final class CoinChartView: BaseView {
     override func configureLayout() {
         icon.snp.makeConstraints { make in
             make.leading.equalTo(safeAreaLayoutGuide).offset(8)
-            make.top.equalTo(safeAreaLayoutGuide).offset(12)
+            make.top.equalTo(self.safeAreaLayoutGuide)
             make.size.equalTo(40)
         }
         
@@ -110,7 +110,7 @@ final class CoinChartView: BaseView {
         chart.snp.makeConstraints { make in
             make.top.equalTo(allTimeLowPrice.snp.bottom).offset(4)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(-10)
-            make.bottom.equalTo(safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(40)
         }
     
         updateLabel.snp.makeConstraints { make in

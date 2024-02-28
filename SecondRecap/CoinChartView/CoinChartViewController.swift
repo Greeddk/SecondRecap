@@ -21,8 +21,10 @@ final class CoinChartViewController: BaseViewController {
     }
     
     override func configureViewController() {
-        let favoriteButton = UIBarButtonItem(image: UIImage(named: "btn_star"), style: .plain, target: self, action: #selector(favoriteButtonClicked))
-        navigationController?.navigationItem.rightBarButtonItem = favoriteButton
+        let favoriteButton = UIBarButtonItem(image: UIImage(named: "btn_star")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(favoriteButtonClicked))
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = favoriteButton
+        navigationController?.navigationBar
     }
     
     @objc

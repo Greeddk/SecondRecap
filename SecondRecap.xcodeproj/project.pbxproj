@@ -120,11 +120,12 @@
 				429AA5162B8DC2F3008F3A42 /* Base */,
 				429AA50F2B8DB1DD008F3A42 /* Extension */,
 				429AA5212B8DC60B008F3A42 /* TabBarView */,
+				429AA5742B8F27D8008F3A42 /* ViewModel */,
 				429AA51F2B8DC5E3008F3A42 /* CoinTrendingView */,
 				429AA5222B8DC618008F3A42 /* CoinSearchView */,
 				429AA5232B8DC624008F3A42 /* FavoriteCoinView */,
-				429AA5202B8DC5F8008F3A42 /* SettingView */,
 				429AA5242B8DC631008F3A42 /* CoinChartView */,
+				429AA5202B8DC5F8008F3A42 /* SettingView */,
 				429AA4E82B8DAF78008F3A42 /* AppDelegate.swift */,
 				429AA4EA2B8DAF78008F3A42 /* SceneDelegate.swift */,
 				429AA4F12B8DAF79008F3A42 /* Assets.xcassets */,
@@ -158,7 +159,6 @@
 		429AA51F2B8DC5E3008F3A42 /* CoinTrendingView */ = {
 			isa = PBXGroup;
 			children = (
-				429AA5322B8DD357008F3A42 /* CoinTrendingViewModel.swift */,
 				429AA4EC2B8DAF78008F3A42 /* CoinTrendingViewController.swift */,
 				429AA5262B8DC6E8008F3A42 /* CoinTrendingView.swift */,
 				429AA52A2B8DC951008F3A42 /* FavoriteTableViewCell.swift */,
@@ -234,6 +234,14 @@
 			children = (
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		429AA5742B8F27D8008F3A42 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				429AA5322B8DD357008F3A42 /* CoinTrendingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -499,6 +507,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,6 +540,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

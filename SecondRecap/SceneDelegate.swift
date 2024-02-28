@@ -18,8 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-//        let vc = TabBarViewController()
-        let vc = CoinChartViewController()
+        let vc = TabBarViewController()
         
         window?.rootViewController = vc
         window?.makeKeyAndVisible()

@@ -64,8 +64,8 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
     
     override func configureView() {
         backView.clipsToBounds = false
-        backView.layer.shadowOpacity = 0.05
-        backView.layer.shadowRadius = 3
+        backView.layer.shadowOpacity = 0.1
+        backView.layer.shadowRadius = 4
         backView.layer.shadowOffset = CGSize(width: 0, height: 0)
         backView.layer.shadowColor = UIColor.black.cgColor
         backView.layer.cornerRadius = 12
