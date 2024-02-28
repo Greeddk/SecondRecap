@@ -7,13 +7,27 @@
 
 import UIKit
 
-class CoinChartViewController: UIViewController {
+final class CoinChartViewController: BaseViewController {
+    
+    let mainView = CoinChartView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
+    override func configureViewController() {
+        let favoriteButton = UIBarButtonItem(image: UIImage(named: "btn_star"), style: .plain, target: self, action: #selector(favoriteButtonClicked))
+        navigationController?.navigationItem.rightBarButtonItem = favoriteButton
+    }
+    
+    @objc
+    private func favoriteButtonClicked() {
+        
+    }
 
 }
