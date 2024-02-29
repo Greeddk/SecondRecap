@@ -19,14 +19,16 @@ struct Item: Decodable {
 struct Coin: Decodable {
     let id: String
     let name: String
+    let thumb: String?
     let symbol: String
-    let icon: String // Coin image / 원래 이름 small
-    let rank: Int // 시가총액 순위 / 원래 이름 market_cap_rank
-    let data: CoinPrice
+    let icon: String? // Coin image / 원래 이름 small
+    let rank: Int? // 시가총액 순위 / 원래 이름 market_cap_rank
+    let data: CoinPrice?
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
+        case thumb
         case symbol
         case icon = "small"
         case rank = "market_cap_rank"

@@ -10,6 +10,8 @@ import UIKit
 class CoinSearchViewController: BaseViewController {
     
     let mainView = CoinSearchView()
+    let viewModel = CoinSearchViewModel()
+    var resultList: [Coin] = []
     
     override func loadView() {
         self.view = mainView
@@ -17,7 +19,10 @@ class CoinSearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.outputSearchResult.bind { value in
+            self.resultList = value.coins
+            self.mainView.tableView.reloadData()
+        }
     }
     
     override func configureViewController() {
@@ -34,15 +39,17 @@ class CoinSearchViewController: BaseViewController {
 extension CoinSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        if resultList.count < 26 {
+            return resultList.count
+        } else {
+            return 25
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchedCoinTableViewCell.identifier, for: indexPath) as! SearchedCoinTableViewCell
-        cell.icon.image = UIImage(systemName: "person")
-        cell.coinName.text = "Bitcoin"
-        cell.coinSymbolname.text = "BTC"
-        cell.favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)
+        let item = resultList[indexPath.row]
+        cell.configureCell(item, attributeString: viewModel.outputSearchText.value ?? "")
         return cell
     }
     
@@ -57,5 +64,8 @@ extension CoinSearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension CoinSearchViewController: UISearchBarDelegate {
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.inputSearchText.value = searchBar.text
+        view.endEditing(true)
+    }
 }

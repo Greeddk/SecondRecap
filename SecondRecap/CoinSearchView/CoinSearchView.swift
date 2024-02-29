@@ -43,6 +43,7 @@ class CoinSearchView: BaseView {
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "찾고싶은 코인을 입력해주세요!"
     }
     
 }

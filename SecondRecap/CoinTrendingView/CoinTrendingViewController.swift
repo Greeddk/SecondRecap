@@ -27,21 +27,20 @@ class CoinTrendingViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "Crypto Coin"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.outputList.bind { value in
             self.list = value
             self.mainView.tableView.reloadData()
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
     
     override func configureViewController() {
-        navigationItem.title = "Crypto Coin"
-        navigationController?.navigationBar.prefersLargeTitles = true
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         mainView.tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)

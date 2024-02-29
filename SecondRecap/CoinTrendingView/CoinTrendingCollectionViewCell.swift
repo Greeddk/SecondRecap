@@ -87,17 +87,19 @@ extension CoinTrendingCollectionViewCell {
     
     func configureCoinCell(_ item: Coin, indexPath: IndexPath) {
         rank.text = "\(indexPath.item + 1)"
-        let url = URL(string: item.icon)
+        guard let iconURL = item.icon else { return }
+        let url = URL(string: iconURL)
         icon.kf.setImage(with: url)
         coinName.text = item.name
         coinSymbolname.text = item.symbol
-        let attributedString = item.data.price.asAttributedString()
+        guard let data = item.data else { return }
+        let attributedString = data.price.asAttributedString()
         price.attributedText = attributedString
         price.font = .systemFont(ofSize: 15)
-        let percentage = item.data.change_percentage.krw
+        let percentage = data.change_percentage.krw
         changePercentage.textColor = percentage < 0 ? .blueForLow : .redForHigh
         let sign = percentage >= 0 ? "+" : ""
-        changePercentage.text = sign + String(format: "%.2f", item.data.change_percentage.krw) + "%"
+        changePercentage.text = sign + String(format: "%.2f", data.change_percentage.krw) + "%"
         changePercentage.font = .systemFont(ofSize: 12)
         if indexPath.item % 3 == 2 {
             lineView.backgroundColor = .clear
