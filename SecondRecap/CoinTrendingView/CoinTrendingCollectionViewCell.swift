@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     
@@ -16,6 +17,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     let coinSymbolname = UILabel()
     let price = UILabel()
     let changePercentage = UILabel()
+    let lineView = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,12 +28,12 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureHierarchy() {
-        contentView.addSubviews([rank, icon, coinName, coinSymbolname, price, changePercentage])
+        contentView.addSubviews([rank, icon, coinName, coinSymbolname, price, changePercentage, lineView])
     }
     
     override func configureLayout() {
         rank.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).offset(4)
+            make.leading.equalTo(contentView).offset(34)
             make.centerY.equalToSuperview()
         }
         
@@ -60,6 +62,13 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
             make.top.equalTo(coinSymbolname)
             make.trailing.equalTo(price.snp.trailing)
         }
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.leading.equalTo(rank.snp.leading)
+            make.trailing.equalTo(contentView)
+            make.bottom.equalTo(contentView)
+        }
     }
     
     override func configureView() {
@@ -69,11 +78,51 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         coinSymbolname.font = .systemFont(ofSize: 12)
         coinSymbolname.textColor = .customLightBlack
         price.textColor = .customBlack
-        price.font = .systemFont(ofSize: 17)
         changePercentage.text = "+0.64%"
-        changePercentage.font = .systemFont(ofSize: 12)
-        guard let text = changePercentage.text?.first else { return }
-        changePercentage.textColor = text == "+" ? .redForHigh : .blueForLow
     }
     
+}
+
+extension CoinTrendingCollectionViewCell {
+    
+    func configureCoinCell(_ item: Coin, indexPath: IndexPath) {
+        rank.text = "\(indexPath.item + 1)"
+        let url = URL(string: item.icon)
+        icon.kf.setImage(with: url)
+        coinName.text = item.name
+        coinSymbolname.text = item.symbol
+        let attributedString = item.data.price.asAttributedString()
+        price.attributedText = attributedString
+        price.font = .systemFont(ofSize: 15)
+        let percentage = item.data.change_percentage.krw
+        changePercentage.textColor = percentage < 0 ? .blueForLow : .redForHigh
+        let sign = percentage >= 0 ? "+" : ""
+        changePercentage.text = sign + String(format: "%.2f", item.data.change_percentage.krw) + "%"
+        changePercentage.font = .systemFont(ofSize: 12)
+        if indexPath.item % 3 == 2 {
+            lineView.backgroundColor = .clear
+        } else {
+            lineView.backgroundColor = .customLightGray
+        }
+    }
+    
+    func configureNFTCell(_ item: NFT, indexPath: IndexPath) {
+        rank.text = "\(indexPath.item + 1)"
+        coinName.text = item.name
+        coinSymbolname.text = item.id
+        let url = URL(string: item.thumb)
+        icon.kf.setImage(with: url)
+        price.text = item.data.floor_price
+        price.font = .systemFont(ofSize: 15)
+        guard let text = changePercentage.text?.first else { return }
+        changePercentage.textColor = text == "-" ? .blueForLow : .redForHigh
+        let sign = text != "-" ? "+" : ""
+        changePercentage.text = sign + String(format: "%.2f", Double(item.data.change_percentage) ?? 0) + "%"
+        changePercentage.font = .systemFont(ofSize: 12)
+        if indexPath.item % 3 == 2 {
+            lineView.backgroundColor = .clear
+        } else {
+            lineView.backgroundColor = .customLightGray
+        }
+    }
 }

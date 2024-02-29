@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
 class CoinTrendingViewController: BaseViewController {
     
@@ -64,12 +63,11 @@ extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.identifier, for: indexPath) as! FavoriteTableViewCell
-            cell.sectionLabel.text = HeaderTitle.favorite.rawValue
+            cell.sectionLabel.text = HeaderTitle.allCases[indexPath.section].rawValue
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.collectionView.tag = indexPath.section
             cell.collectionView.register(FavoriteCoinCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteCoinCollectionViewCell.identifier)
-            cell.collectionView.showsHorizontalScrollIndicator = false
             cell.collectionView.reloadData()
             return cell
         } else {
@@ -79,7 +77,6 @@ extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource
             cell.collectionView.dataSource = self
             cell.collectionView.tag = indexPath.section
             cell.collectionView.register(CoinTrendingCollectionViewCell.self, forCellWithReuseIdentifier: CoinTrendingCollectionViewCell.identifier)
-            cell.collectionView.showsHorizontalScrollIndicator = false
             cell.collectionView.reloadData()
             return cell
         }
@@ -101,8 +98,7 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
         if collectionView.tag == 0 {
             return 5
         } else if collectionView.tag == 1 {
-
-                return list.coins.count
+            return list.coins.count
         } else {
             return list.nfts.count
         }
@@ -119,24 +115,12 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
         } else if collectionView.tag == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinTrendingCollectionViewCell.identifier, for: indexPath) as! CoinTrendingCollectionViewCell
             let item = list.coins[indexPath.item].item
-            cell.rank.text = "\(indexPath.item + 1)"
-            let url = URL(string: item.icon)
-            cell.icon.kf.setImage(with: url)
-            cell.coinName.text = item.name
-            cell.coinSymbolname.text = item.symbol
-            cell.price.text = item.data.price
-            cell.changePercentage.text = String(describing: item.data.change_percentage.krw)
+            cell.configureCoinCell(item, indexPath: indexPath)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinTrendingCollectionViewCell.identifier, for: indexPath) as! CoinTrendingCollectionViewCell
             let item = list.nfts[indexPath.item]
-            cell.rank.text = "\(indexPath.item + 1)"
-            cell.coinName.text = item.name
-            cell.coinSymbolname.text = item.id
-            let url = URL(string: item.thumb)
-            cell.icon.kf.setImage(with: url)
-            cell.price.text = item.data.floor_price
-            cell.changePercentage.text = item.data.change_percentage
+            cell.configureNFTCell(item, indexPath: indexPath)
             return cell
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		423FA1772B90206B0032DDAA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423FA1762B90206B0032DDAA /* String+Extension.swift */; };
 		429AA4E92B8DAF78008F3A42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA4E82B8DAF78008F3A42 /* AppDelegate.swift */; };
 		429AA4EB2B8DAF78008F3A42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA4EA2B8DAF78008F3A42 /* SceneDelegate.swift */; };
 		429AA4ED2B8DAF78008F3A42 /* CoinTrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429AA4EC2B8DAF78008F3A42 /* CoinTrendingViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		423FA1762B90206B0032DDAA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		429AA4E52B8DAF78008F3A42 /* SecondRecap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondRecap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		429AA4E82B8DAF78008F3A42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		429AA4EA2B8DAF78008F3A42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				429AA5102B8DB1EA008F3A42 /* UIColor+Extension.swift */,
 				429AA51D2B8DC5A1008F3A42 /* UIVIew+Extension.swift */,
+				423FA1762B90206B0032DDAA /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				429AA4ED2B8DAF78008F3A42 /* CoinTrendingViewController.swift in Sources */,
 				429AA5792B8F3E8E008F3A42 /* APIManager.swift in Sources */,
 				429AA5332B8DD357008F3A42 /* CoinTrendingViewModel.swift in Sources */,
+				423FA1772B90206B0032DDAA /* String+Extension.swift in Sources */,
 				429AA57B2B8F45A8008F3A42 /* CoinAPI.swift in Sources */,
 				429AA5412B8DFAD0008F3A42 /* FavoriteCoinView.swift in Sources */,
 				429AA52B2B8DC951008F3A42 /* FavoriteTableViewCell.swift in Sources */,

@@ -36,6 +36,7 @@ class CoinTrendingView: BaseView {
     override func configureView() {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        tableView.allowsSelection = false
     }
 
 }

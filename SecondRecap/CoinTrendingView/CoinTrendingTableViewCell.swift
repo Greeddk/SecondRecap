@@ -32,25 +32,26 @@ class CoinTrendingTableViewCell: BaseTableViewCell {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(sectionLabel.snp.bottom).offset(20)
-            make.leading.equalTo(contentView).inset(30)
+            make.top.equalTo(sectionLabel.snp.bottom).offset(10)
+            make.leading.equalTo(contentView)
             make.trailing.equalToSuperview()
-            make.height.equalTo(180)
+            make.height.equalTo(210)
         }
     }
     
     override func configureView() {
+        collectionView.showsHorizontalScrollIndicator = false
         sectionLabel.font = .boldSystemFont(ofSize: 22)
         sectionLabel.textColor = .customBlack
     }
 
     func collectionViewLayout() -> UICollectionViewLayout {
         let cellWidth = UIScreen.main.bounds.width - 70
-        let spacing:CGFloat = 15
+        let spacing:CGFloat = 10
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = spacing
-        layout.minimumInteritemSpacing = spacing
-        layout.itemSize = CGSize(width: cellWidth, height: 40)
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: cellWidth, height: 70)
         layout.scrollDirection = .horizontal
         return layout
     }

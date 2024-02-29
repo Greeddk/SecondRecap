@@ -29,6 +29,7 @@ class FavoriteTableViewCell: BaseTableViewCell {
     }
     
     override func configureView() {
+        collectionView.showsHorizontalScrollIndicator = false
         sectionLabel.font = .boldSystemFont(ofSize: 22)
         sectionLabel.textColor = .customBlack
     }
@@ -41,7 +42,7 @@ class FavoriteTableViewCell: BaseTableViewCell {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(sectionLabel.snp.bottom).offset(8)
-            make.leading.equalTo(contentView).offset(10)
+            make.leading.equalTo(contentView)
             make.trailing.equalToSuperview()
             make.height.equalTo(180)
         }

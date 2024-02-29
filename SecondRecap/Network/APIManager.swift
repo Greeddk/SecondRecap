@@ -19,7 +19,6 @@ class APIManager {
         AF.request(url).responseDecodable(of: T.self) { success in
             switch success.result {
             case .success(let success):
-                print(success)
                 completionHandler(success)
             case .failure(let failure):
                 print(failure)
