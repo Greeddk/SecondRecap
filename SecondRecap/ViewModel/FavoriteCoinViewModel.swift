@@ -1,35 +1,24 @@
 //
-//  CoinTrendingViewModel.swift
+//  FavoriteCoinViewModel.swift
 //  SecondRecap
 //
-//  Created by Greed on 2/27/24.
+//  Created by Greed on 3/1/24.
 //
 
 import Foundation
 
-final class CoinTrendingViewModel {
+class FavoriteCoinViewModel {
     
-    let apiManager = APIManager.shared
     let repository = FavoriteRepository()
-
-    var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
-    var inputFavoriteListTrigger: Observable<Void?> = Observable(nil)
+    let apiManager = APIManager.shared
     
-    var outputList: Observable<CoinTrending> = Observable(CoinTrending(coins: [], nfts: []))
+    var inputViewWillAppearTrigger: Observable<Void?> = Observable(nil)
+    
     var outputFavoriteList: Observable<Array<CoinMarket>?> = Observable(nil)
     
     init() {
-        inputViewDidLoadTrigger.bind { _ in
-            self.requestCall()
-        }
-        inputFavoriteListTrigger.bind { _ in
+        inputViewWillAppearTrigger.bind { _ in
             self.requestFavoriteCoinsCall()
-        }
-    }
-    
-    private func requestCall() {
-        apiManager.callRequest(type: CoinTrending.self, api: .trending) { value in
-            self.outputList.value = value
         }
     }
     

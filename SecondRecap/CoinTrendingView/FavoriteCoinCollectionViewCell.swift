@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
     
@@ -74,5 +75,13 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
             make.leading.equalTo(icon)
             make.bottom.equalTo(changePercentage.snp.top).offset(-8)
         }
+    }
+    
+    func configureCell(item: CoinMarket) {
+        coinName.text = item.id
+        let url = URL(string: item.image)
+        icon.kf.setImage(with: url)
+        coinSymbolname.text = item.symbol
+        price.text = "₩\(item.current_price)"
     }
 }

@@ -8,8 +8,9 @@
 import UIKit
 import SnapKit
 
-class CoinTrendingViewController: BaseViewController {
+final class CoinTrendingViewController: BaseViewController {
     
+    var favoriteList: [CoinMarket] = []
     var list: CoinTrending = CoinTrending(coins: [], nfts: [])
     
     enum HeaderTitle: String, CaseIterable {
@@ -29,6 +30,7 @@ class CoinTrendingViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "Crypto Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
+        reloadFavorite()
     }
 
     override func viewDidLoad() {
@@ -37,6 +39,16 @@ class CoinTrendingViewController: BaseViewController {
         viewModel.outputList.bind { value in
             self.list = value
             self.mainView.tableView.reloadData()
+        }
+    }
+    
+    private func reloadFavorite() {
+        viewModel.inputFavoriteListTrigger.value = ()
+        viewModel.outputFavoriteList.bind { value in
+            guard let value = value else { return }
+            self.favoriteList = value
+            print(self.favoriteList.map { $0.id })
+            self.mainView.tableView.reloadSections([0], with: .fade)
         }
     }
     
@@ -61,14 +73,18 @@ extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.identifier, for: indexPath) as! FavoriteTableViewCell
-            cell.sectionLabel.text = HeaderTitle.allCases[indexPath.section].rawValue
-            cell.collectionView.delegate = self
-            cell.collectionView.dataSource = self
-            cell.collectionView.tag = indexPath.section
-            cell.collectionView.register(FavoriteCoinCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteCoinCollectionViewCell.identifier)
-            cell.collectionView.reloadData()
-            return cell
+            if favoriteList.count <= 1 {
+                return UITableViewCell()
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.identifier, for: indexPath) as! FavoriteTableViewCell
+                cell.sectionLabel.text = HeaderTitle.allCases[indexPath.section].rawValue
+                cell.collectionView.delegate = self
+                cell.collectionView.dataSource = self
+                cell.collectionView.tag = indexPath.section
+                cell.collectionView.register(FavoriteCoinCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteCoinCollectionViewCell.identifier)
+                cell.collectionView.reloadData()
+                return cell
+            }
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CoinTrendingTableViewCell.identifier, for: indexPath) as! CoinTrendingTableViewCell
             cell.sectionLabel.text = HeaderTitle.allCases[indexPath.section].rawValue
@@ -83,7 +99,11 @@ extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 230
+            if favoriteList.count == 0 {
+                return 0
+            } else {
+                return 230
+            }
         } else {
             return 270
         }
@@ -95,7 +115,13 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 0 {
-            return 5
+            if favoriteList.count >= 4 {
+                return 4
+            } else if favoriteList.count >= 2 {
+                return favoriteList.count
+            } else {
+                return 0
+            }
         } else if collectionView.tag == 1 {
             return list.coins.count
         } else {
@@ -106,11 +132,17 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.tag == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCoinCollectionViewCell.identifier, for: indexPath) as! FavoriteCoinCollectionViewCell
-            cell.coinName.text = "Bitcoin"
-            cell.icon.image = UIImage(systemName: "person")
-            cell.coinSymbolname.text = "BTC"
-            cell.price.text = "₩74,213,566"
-            return cell
+            if indexPath.item == 3 {
+                cell.icon.image = nil
+                cell.coinName.text = "더보기"
+                cell.coinSymbolname.text = ""
+                cell.price.text = ""
+                cell.changePercentage.text = ""
+                return cell
+            } else {
+                cell.configureCell(item: favoriteList[indexPath.item])
+                return cell
+            }
         } else if collectionView.tag == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinTrendingCollectionViewCell.identifier, for: indexPath) as! CoinTrendingCollectionViewCell
             let item = list.coins[indexPath.item].item
@@ -126,7 +158,15 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        if collectionView.tag == 1 {
+        if collectionView.tag == 0 {
+            if indexPath.item == 3 {
+                self.tabBarController?.selectedIndex = 2
+            } else {
+                let vc = CoinChartViewController()
+                vc.coinMarket = favoriteList[indexPath.item]
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        } else if collectionView.tag == 1 {
             let vc = CoinChartViewController()
             vc.id = list.coins[indexPath.item].item.id
             navigationController?.pushViewController(vc, animated: true)

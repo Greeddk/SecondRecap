@@ -73,5 +73,8 @@ extension CoinSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         viewModel.inputSearchText.value = searchBar.text
         view.endEditing(true)
+        let indexPath = NSIndexPath(row: NSNotFound, section: 0)
+        mainView.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
     }
+    
 }

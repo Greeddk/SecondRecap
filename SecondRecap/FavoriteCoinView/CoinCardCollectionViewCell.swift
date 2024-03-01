@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CoinCardCollectionViewCell: BaseCollectionViewCell {
     
@@ -41,6 +42,7 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
         
         coinName.snp.makeConstraints { make in
             make.leading.equalTo(icon.snp.trailing).offset(8)
+            make.trailing.equalTo(backView.snp.trailing).inset(8)
             make.top.equalTo(icon)
         }
         
@@ -79,12 +81,21 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
         price.font = .boldSystemFont(ofSize: 17)
         changePercentage.text = "+0.64%"
         changePercentage.font = .boldSystemFont(ofSize: 12)
-        guard let text = changePercentage.text?.first else { return }
-        changePercentage.textAlignment = .center
-        changePercentage.textColor = text == "+" ? .redForHigh : .blueForLow
-        changePercentage.backgroundColor = text == "+" ? .lightRed : .lightBlue
         changePercentage.clipsToBounds = true
         changePercentage.layer.cornerRadius = 4
+    }
+    
+    func configureCell(item: CoinMarket) {
+        let url = URL(string: item.image)
+        icon.kf.setImage(with: url)
+        coinName.text = item.id
+        coinSymbolname.text = item.symbol
+        price.text = "₩\(item.current_price)"
+        changePercentage.textAlignment = .center
+        changePercentage.textColor = item.change_percentage >= 0 ? .redForHigh : .blueForLow
+        changePercentage.backgroundColor = item.change_percentage >= 0  ? .lightRed : .lightBlue
+        let sign = item.change_percentage >= 0 ? "+" : " "
+        changePercentage.text = sign + String(format: "%.2f",item.change_percentage) + "%"
     }
     
 }

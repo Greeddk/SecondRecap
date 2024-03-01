@@ -31,7 +31,7 @@ class FavoriteCoinView: BaseView {
     }
     
     override func configureView() {
-        
+        collectionView.isScrollEnabled = false
     }
     
     func collectionViewLayout() -> UICollectionViewFlowLayout {

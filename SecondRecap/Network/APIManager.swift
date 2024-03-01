@@ -11,7 +11,7 @@ import Alamofire
 class APIManager {
     
     static let shared = APIManager()
-    // TODO: 실패경우 핸들링
+    // TODO: 실패경우 핸들링, 타이머!
     
     func callRequest<T:Decodable>(type: T.Type, api: CoinAPI, completionHandler: @escaping (T) -> Void) {
         
@@ -19,7 +19,6 @@ class APIManager {
         AF.request(url).responseDecodable(of: T.self) { success in
             switch success.result {
             case .success(let success):
-                print(success)
                 completionHandler(success)
             case .failure(let failure):
                 print(failure)

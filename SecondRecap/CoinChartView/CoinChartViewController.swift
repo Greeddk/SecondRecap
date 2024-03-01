@@ -14,6 +14,7 @@ final class CoinChartViewController: BaseViewController {
     
     var id: String?
     var coinMarket: CoinMarket!
+    lazy var isFavorite = viewModel.outputFavoriteStatus.value ? "btn_star_fill" : "btn_star"
     
     override func loadView() {
         self.view = mainView
@@ -27,18 +28,23 @@ final class CoinChartViewController: BaseViewController {
             guard let value = value else { return }
             self.mainView.inputData(value)
         }
-        
+        viewModel.inputViewDidLoadTrigger.value = ()
     }
     
     override func configureViewController() {
-        let favoriteButton = UIBarButtonItem(image: UIImage(named: "btn_star")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(favoriteButtonClicked))
+        let favoriteButton = UIBarButtonItem(image: UIImage(named: isFavorite)?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(favoriteButtonClicked))
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = favoriteButton
     }
     
     @objc
     private func favoriteButtonClicked() {
-        
+        viewModel.inputFavoriteButtonClicked.value = coinMarket.id
+        if viewModel.outputFavoriteStatus.value {
+            isFavorite = "btn_star"
+        } else {
+            isFavorite = "btn_star_fill"
+        }
     }
 
 }
