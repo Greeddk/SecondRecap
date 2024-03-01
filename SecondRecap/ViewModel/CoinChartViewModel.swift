@@ -30,7 +30,6 @@ final class CoinChartViewModel {
     
     private func callRequest(_ id: String) {
         apiManager.callRequest(type: [CoinMarket].self, api: .coinInfo(id: id)) { value in
-            dump(value)
             self.outputCoinMarket.value = value.first
         }
     }

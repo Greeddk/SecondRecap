@@ -25,9 +25,13 @@ class CoinSearchViewController: BaseViewController {
         }
     }
     
-    override func configureViewController() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationItem.title = "Search"
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func configureViewController() {
         mainView.searchBar.delegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -58,7 +62,9 @@ extension CoinSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let vc = CoinChartViewController()
+        vc.id = resultList[indexPath.row].id
         navigationController?.pushViewController(vc, animated: true)
     }
 }

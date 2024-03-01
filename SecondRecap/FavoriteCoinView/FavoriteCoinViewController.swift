@@ -20,9 +20,13 @@ class FavoriteCoinViewController: BaseViewController {
         
     }
     
-    override func configureViewController() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationItem.title = "Favorite Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func configureViewController() {
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
         mainView.collectionView.register(CoinCardCollectionViewCell.self, forCellWithReuseIdentifier: CoinCardCollectionViewCell.identifier)

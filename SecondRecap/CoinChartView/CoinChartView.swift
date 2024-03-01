@@ -52,6 +52,7 @@ final class CoinChartView: BaseView {
         coinName.snp.makeConstraints { make in
             make.top.equalTo(icon.snp.top)
             make.leading.equalTo(icon.snp.trailing).offset(4)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(8)
         }
         
         price.snp.makeConstraints { make in
@@ -135,6 +136,7 @@ final class CoinChartView: BaseView {
         price.text = "₩\(changeNumberFormat(number: item.current_price))"
         let sign = item.change_percentage >= 0 ? "+" : ""
         changePercentage.text = sign + String(format: "%.2f", item.change_percentage) + "%"
+        changePercentage.textColor = item.change_percentage >= 0 ? .redForHigh : .blueForLow
         todayHighPrice.text = "₩\(changeNumberFormat(number: item.high))"
         todayLowPrice.text = "₩\(changeNumberFormat(number: item.low))"
         allTimeHighPrice.text = "₩\(changeNumberFormat(number: item.ath))"
@@ -179,6 +181,7 @@ final class CoinChartView: BaseView {
         //chart의 곡선
         dataSet.mode = LineChartDataSet.Mode.cubicBezier
         dataSet.mode = LineChartDataSet.Mode.horizontalBezier
+        dataSet.cubicIntensity = 1.0
         //chart의 그라디언트 컬러 설정
         dataSet.gradientPositions = [0, 40, 100]
         dataSet.fillAlpha = 1

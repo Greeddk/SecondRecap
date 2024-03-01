@@ -35,6 +35,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         rank.snp.makeConstraints { make in
             make.leading.equalTo(contentView).offset(34)
             make.centerY.equalToSuperview()
+            make.width.equalTo(25)
         }
         
         icon.snp.makeConstraints { make in
@@ -45,22 +46,26 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         
         coinName.snp.makeConstraints { make in
             make.leading.equalTo(icon.snp.trailing).offset(12)
+            make.trailing.lessThanOrEqualTo(price.snp.leading).offset(-4)
             make.top.equalTo(icon)
         }
         
         coinSymbolname.snp.makeConstraints { make in
             make.leading.equalTo(coinName)
+            make.trailing.lessThanOrEqualTo(changePercentage.snp.leading).offset(-4)
             make.top.equalTo(coinName.snp.bottom)
         }
         
         price.snp.makeConstraints { make in
             make.top.equalTo(coinName)
             make.trailing.equalToSuperview().offset(-12)
+            make.width.greaterThanOrEqualTo(30)
         }
         
         changePercentage.snp.makeConstraints { make in
             make.top.equalTo(coinSymbolname)
             make.trailing.equalTo(price.snp.trailing)
+            make.width.greaterThanOrEqualTo(30)
         }
         
         lineView.snp.makeConstraints { make in
@@ -75,6 +80,7 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         rank.font = .boldSystemFont(ofSize: 22)
         coinName.font = .boldSystemFont(ofSize: 17)
         coinName.textColor = .customBlack
+        coinName.lineBreakMode = .byTruncatingTail
         coinSymbolname.font = .systemFont(ofSize: 12)
         coinSymbolname.textColor = .customLightBlack
         price.textColor = .customBlack
