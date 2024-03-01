@@ -125,8 +125,11 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = CoinChartViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        if collectionView.tag == 1 {
+            let vc = CoinChartViewController()
+            vc.id = list.coins[indexPath.item].item.id
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

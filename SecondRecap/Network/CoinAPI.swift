@@ -10,7 +10,7 @@ import Foundation
 enum CoinAPI {
     case trending
     case search(query: String)
-    case coinInfo(id: Int)
+    case coinInfo(id: String)
     
     var baseURL: String {
         return "https://api.coingecko.com/api/v3/"
@@ -23,7 +23,7 @@ enum CoinAPI {
         case .search(let query):
             return URL(string: baseURL + "search?query=\(query)")!
         case .coinInfo(let id):
-            return URL(string: baseURL + "coins/markets?vs_currency=krw&ids=\(id)")!
+            return URL(string: baseURL + "coins/markets?vs_currency=krw&ids=\(id)&sparkline=true")!
         }
     }
     

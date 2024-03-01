@@ -10,6 +10,10 @@ import UIKit
 final class CoinChartViewController: BaseViewController {
     
     let mainView = CoinChartView()
+    let viewModel = CoinChartViewModel()
+    
+    var id: String?
+    var coinMarket: CoinMarket!
     
     override func loadView() {
         self.view = mainView
@@ -17,7 +21,13 @@ final class CoinChartViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.inputId.value = id
+        viewModel.outputCoinMarket.bind { value in
+            self.coinMarket = value
+            guard let value = value else { return }
+            self.mainView.inputData(value)
+        }
+        
     }
     
     override func configureViewController() {

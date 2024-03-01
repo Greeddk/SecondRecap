@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import DGCharts
+import Kingfisher
 
 final class CoinChartView: BaseView {
     
@@ -26,6 +27,8 @@ final class CoinChartView: BaseView {
     let allTimeLowPrice = UILabel()
     let chart = LineChartView()
     let updateLabel = UILabel()
+    
+    var entries: [ChartDataEntry] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -119,16 +122,30 @@ final class CoinChartView: BaseView {
         }
     }
     
-    override func configureView() {
+    func inputData(_ item: CoinMarket) {
+        var xValue: Double = 0
+        for y in item.sparkline.price {
+            xValue += 1
+            entries.append(ChartDataEntry(x: xValue, y: y))
+        }
         configureChart()
+        coinName.text = item.name
+        let url = URL(string: item.image)
+        icon.kf.setImage(with: url)
+        price.text = "₩\(changeNumberFormat(number: item.current_price))"
+        let sign = item.change_percentage >= 0 ? "+" : ""
+        changePercentage.text = sign + String(format: "%.2f", item.change_percentage) + "%"
+        todayHighPrice.text = "₩\(changeNumberFormat(number: item.high))"
+        todayLowPrice.text = "₩\(changeNumberFormat(number: item.low))"
+        allTimeHighPrice.text = "₩\(changeNumberFormat(number: item.ath))"
+        allTimeLowPrice.text = "₩\(changeNumberFormat(number: item.atl))"
+        updateLabel.text = changeDateFormat(date: item.last_updated) + " 업데이트"
+    }
+    
+    override func configureView() {
         icon.image = UIImage(systemName: "person")
-        coinName.text = "Solana"
         coinName.font = .boldSystemFont(ofSize: 32)
-        price.text = "₩88,888,888"
         price.font = .boldSystemFont(ofSize: 32)
-        changePercentage.text = "+3.22%"
-        guard let text = changePercentage.text?.first else { return }
-        changePercentage.textColor = text == "+" ? .redForHigh : .blueForLow
         changePercentage.font = .systemFont(ofSize: 18)
         dateText.font = .systemFont(ofSize: 18)
         dateText.text = "Today"
@@ -136,43 +153,28 @@ final class CoinChartView: BaseView {
         todayHighLabel.text = "고가"
         todayHighLabel.textColor = .redForHigh
         todayHighLabel.font = .boldSystemFont(ofSize: 20)
-        todayHighPrice.text = "₩69,234,423"
         todayHighPrice.textColor = .customLightBlack
         todayHighPrice.font = .systemFont(ofSize: 20)
         todayLowLabel.font = .boldSystemFont(ofSize: 20)
         todayLowLabel.text = "저가"
         todayLowLabel.textColor = .blueForLow
-        todayLowPrice.text = "₩56,234,645"
         todayLowPrice.textColor = .customLightBlack
         todayLowPrice.font = .systemFont(ofSize: 20)
         allTimeHighLabel.text = "신고점"
         allTimeHighLabel.textColor = .redForHigh
         allTimeHighLabel.font = .boldSystemFont(ofSize: 20)
-        allTimeHighPrice.text = "₩2,869,234,423"
         allTimeHighPrice.textColor = .customLightBlack
         allTimeHighPrice.font = .systemFont(ofSize: 20)
         allTimeLowLabel.text = "신저점"
         allTimeLowLabel.textColor = .blueForLow
         allTimeLowLabel.font = .boldSystemFont(ofSize: 20)
-        allTimeLowPrice.text = "₩34,423"
         allTimeLowPrice.textColor = .customLightBlack
         allTimeLowPrice.font = .systemFont(ofSize: 20)
-        updateLabel.text = "2/21 11:53:50 업데이트"
         updateLabel.textColor = .customGray
         updateLabel.font = .boldSystemFont(ofSize: 14)
     }
     
     private func configureChart() {
-        let entries = [
-            ChartDataEntry(x: 1, y: 4),
-            ChartDataEntry(x: 2, y: 10),
-            ChartDataEntry(x: 3, y: 7),
-            ChartDataEntry(x: 4, y: 5),
-            ChartDataEntry(x: 5, y: 6),
-            ChartDataEntry(x: 6, y: 3),
-            ChartDataEntry(x: 7, y: 8),
-            ChartDataEntry(x: 8, y: 12),
-        ]
         let dataSet = LineChartDataSet(entries: entries)
         //chart의 곡선
         dataSet.mode = LineChartDataSet.Mode.cubicBezier
@@ -193,6 +195,8 @@ final class CoinChartView: BaseView {
         //chart의 각 점의 값 표시 끄기
         dataSet.drawValuesEnabled = false
         dataSet.highlightEnabled = true
+        //highlight 가로 세로선 색
+        dataSet.highlightColor = .clear
         
         //dataSet 집어 넣기
         let data = LineChartData(dataSet: dataSet)
@@ -217,6 +221,7 @@ final class CoinChartView: BaseView {
         chart.highlightPerTapEnabled = true
         chart.highlightPerDragEnabled = true
         chart.drawMarkers = true
+        chart.gridBackgroundColor = .clear
         let circleMarker = CircleMarker(color: .primary)
         circleMarker.chartView = chart
         chart.marker = circleMarker
@@ -225,6 +230,25 @@ final class CoinChartView: BaseView {
         //TODO: chart highlight line 제거 하기
     }
     
+}
+
+extension CoinChartView {
+    private func changeNumberFormat(number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: number as NSNumber)!
+    }
+    
+    private func changeDateFormat(date: String) -> String {
+        let originFormat = DateFormatter()
+        originFormat.dateFormat = "yyyy-MM-ddhh:mm:ss"
+        let origin = originFormat.date(from: date) ?? Date()
+        
+        let targetFormat = DateFormatter()
+        targetFormat.dateFormat = "MM/dd hh:mm:ss"
+        let result = targetFormat.string(from: origin)
+        return result
+    }
 }
 
 class CircleMarker: MarkerImage {
