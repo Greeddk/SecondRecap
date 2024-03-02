@@ -21,8 +21,8 @@ struct Coin: Decodable {
     let name: String
     let thumb: String?
     let symbol: String
-    let icon: String? // Coin image / 원래 이름 small
-    let rank: Int? // 시가총액 순위 / 원래 이름 market_cap_rank
+    let icon: String? // Coin image
+    let rank: Int? // 시가총액 순위 
     let data: CoinPrice?
     
     enum CodingKeys: String, CodingKey {
@@ -55,7 +55,7 @@ struct CoinPrice: Decodable {
 
 struct NFTPrice: Decodable {
     let floor_price: String
-    let change_percentage: String // 원래 이름 floor_price_in_usd_24h_percentage_change
+    let change_percentage: String
     
     enum CodingKeys: String, CodingKey {
         case floor_price

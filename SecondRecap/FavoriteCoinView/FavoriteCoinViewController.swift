@@ -20,13 +20,13 @@ class FavoriteCoinViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadFavorite()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "Favorite Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
-        reloadFavorite()
     }
     
     private func reloadFavorite() {
@@ -34,7 +34,6 @@ class FavoriteCoinViewController: BaseViewController {
         viewModel.outputFavoriteList.bind { value in
             guard let value = value else { return }
             self.favoriteList = value
-            print(self.favoriteList.map { $0.id })
             self.mainView.collectionView.reloadData()
         }
     }
@@ -57,6 +56,12 @@ extension FavoriteCoinViewController: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinCardCollectionViewCell.identifier, for: indexPath) as! CoinCardCollectionViewCell
         cell.configureCell(item: favoriteList[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = CoinChartViewController()
+        vc.coinMarket = favoriteList[indexPath.item]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

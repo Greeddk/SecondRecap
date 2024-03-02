@@ -32,8 +32,12 @@ final class CoinChartViewModel {
             self.favoriteStatusToggle(id: id)
         }
         inputViewDidLoadTrigger.bind { _ in
-            guard let id = self.outputCoinMarket.value?.id else { return }
-            self.fetchFavoriteStatus(id: id)
+            if let id = self.outputCoinMarket.value?.id {
+                self.fetchFavoriteStatus(id: id)
+            }
+            if let id = self.inputCoinMarket.value?.id {
+                self.fetchFavoriteStatus(id: id)
+            }
         }
     }
     
@@ -56,9 +60,10 @@ final class CoinChartViewModel {
         let list = repository.fetchFavoriteItem().filter { $0.id == id }
         if list.count > 0 {
             repository.subtractFavorite(id: id)
+            outputFavoriteStatus.value = false
         } else {
             repository.addFavorite(id: id)
+            outputFavoriteStatus.value = true
         }
-        print(repository.fetchFavoriteItem())
     }
 }

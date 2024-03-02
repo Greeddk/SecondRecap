@@ -12,9 +12,12 @@ final class CoinChartViewController: BaseViewController {
     let mainView = CoinChartView()
     let viewModel = CoinChartViewModel()
     
+    let favoriteButton = UIBarButtonItem()
+    
     var id: String?
-    var coinMarket: CoinMarket!
-    lazy var isFavorite = viewModel.outputFavoriteStatus.value ? "btn_star_fill" : "btn_star"
+    var coinMarket: CoinMarket?
+    var isFavorite = false
+    lazy var image = isFavorite ? "btn_star_fill" : "btn_star"
     
     override func loadView() {
         self.view = mainView
@@ -22,29 +25,44 @@ final class CoinChartViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.inputId.value = id
-        viewModel.outputCoinMarket.bind { value in
-            self.coinMarket = value
-            guard let value = value else { return }
-            self.mainView.inputData(value)
-        }
-        viewModel.inputViewDidLoadTrigger.value = ()
+        transform()
     }
     
     override func configureViewController() {
-        let favoriteButton = UIBarButtonItem(image: UIImage(named: isFavorite)?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(favoriteButtonClicked))
+        favoriteButton.image = UIImage(named: image)?.withRenderingMode(.alwaysOriginal)
+        favoriteButton.target = self
+        favoriteButton.action = #selector(favoriteButtonClicked)
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = favoriteButton
     }
     
+    private func transform() {
+        if let coinmarket = coinMarket {
+            mainView.inputData(coinmarket)
+            viewModel.inputCoinMarket.value = coinmarket
+        }
+        viewModel.inputId.value = id
+        viewModel.outputCoinMarket.bind { value in
+            guard let value = value else { return }
+            self.coinMarket = value
+            self.mainView.inputData(value)
+        }
+        viewModel.inputViewDidLoadTrigger.value = ()
+        viewModel.outputFavoriteStatus.bind { value in
+            self.isFavorite = value
+            if self.isFavorite {
+                self.image = "btn_star_fill"
+            } else {
+                self.image = "btn_star"
+            }
+            self.favoriteButton.image = UIImage(named: self.image)?.withRenderingMode(.alwaysOriginal)
+        }
+    }
+    
     @objc
     private func favoriteButtonClicked() {
-        viewModel.inputFavoriteButtonClicked.value = coinMarket.id
-        if viewModel.outputFavoriteStatus.value {
-            isFavorite = "btn_star"
-        } else {
-            isFavorite = "btn_star_fill"
-        }
+        guard let coinId = coinMarket?.id else { return }
+        viewModel.inputFavoriteButtonClicked.value = coinId
     }
 
 }

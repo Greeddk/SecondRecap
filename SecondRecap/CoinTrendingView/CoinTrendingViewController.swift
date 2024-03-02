@@ -30,7 +30,6 @@ final class CoinTrendingViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "Crypto Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
-        reloadFavorite()
     }
 
     override func viewDidLoad() {
@@ -40,6 +39,7 @@ final class CoinTrendingViewController: BaseViewController {
             self.list = value
             self.mainView.tableView.reloadData()
         }
+        reloadFavorite()
     }
     
     private func reloadFavorite() {
@@ -99,7 +99,7 @@ extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if favoriteList.count == 0 {
+            if favoriteList.count < 2 {
                 return 0
             } else {
                 return 230
