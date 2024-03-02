@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import SnapKit
-
 final class CoinTrendingViewController: BaseViewController {
     
     var favoriteList: [CoinMarket] = []
-    var list: CoinTrending = CoinTrending(coins: [], nfts: [])
+    var trendingList: CoinTrending = CoinTrending(coins: [], nfts: [])
+    var topFifteenList: [CoinMarket] = []
     
     enum HeaderTitle: String, CaseIterable {
         case favorite = "My Favorite"
@@ -30,26 +29,28 @@ final class CoinTrendingViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "Crypto Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
+        viewModel.inputFavoriteListReloadDataTrigger.value = ()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.outputList.bind { value in
-            self.list = value
+            self.trendingList = value
             self.mainView.tableView.reloadData()
+        }
+        viewModel.outputTopFifteenList.bind { value in
+            self.topFifteenList = value
+        }
+        viewModel.outputFavoriteList.bind { value in
+            self.favoriteList = value
+            self.mainView.tableView.reloadSections([0], with: .none)
         }
         reloadFavorite()
     }
     
     private func reloadFavorite() {
         viewModel.inputFavoriteListTrigger.value = ()
-        viewModel.outputFavoriteList.bind { value in
-            guard let value = value else { return }
-            self.favoriteList = value
-            print(self.favoriteList.map { $0.id })
-            self.mainView.tableView.reloadSections([0], with: .fade)
-        }
     }
     
     override func configureViewController() {
@@ -58,7 +59,7 @@ final class CoinTrendingViewController: BaseViewController {
         mainView.tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
         mainView.tableView.register(CoinTrendingTableViewCell.self, forCellReuseIdentifier: CoinTrendingTableViewCell.identifier)
     }
-
+    
 }
 
 extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -123,9 +124,9 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
                 return 0
             }
         } else if collectionView.tag == 1 {
-            return list.coins.count
+            return trendingList.coins.count
         } else {
-            return list.nfts.count
+            return trendingList.nfts.count
         }
     }
     
@@ -145,12 +146,12 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
             }
         } else if collectionView.tag == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinTrendingCollectionViewCell.identifier, for: indexPath) as! CoinTrendingCollectionViewCell
-            let item = list.coins[indexPath.item].item
+            let item = trendingList.coins[indexPath.item].item
             cell.configureCoinCell(item, indexPath: indexPath)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinTrendingCollectionViewCell.identifier, for: indexPath) as! CoinTrendingCollectionViewCell
-            let item = list.nfts[indexPath.item]
+            let item = trendingList.nfts[indexPath.item]
             cell.configureNFTCell(item, indexPath: indexPath)
             return cell
         }
@@ -168,7 +169,9 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
             }
         } else if collectionView.tag == 1 {
             let vc = CoinChartViewController()
-            vc.id = list.coins[indexPath.item].item.id
+//            let market = topFifteenList.filter { $0.id == trendingList.coins[indexPath.item].item.id }
+//            vc.coinMarket = market.first
+            vc.id = trendingList.coins[indexPath.item].item.id
             navigationController?.pushViewController(vc, animated: true)
         }
     }

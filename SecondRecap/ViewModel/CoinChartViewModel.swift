@@ -12,10 +12,8 @@ final class CoinChartViewModel {
     let apiManager = APIManager.shared
     let repository = FavoriteRepository()
 
-    //top15나 검색에서 온 경우 따로 콜해야함
-    //id는 검색페이지나 top에서 들어왔을때 정보를 요청하기 위함
     var inputId: Observable<String?> = Observable(nil)
-    //inputCoinMarket은 10초마다 call 되는 데이터
+
     var inputCoinMarket: Observable<CoinMarket?> = Observable(nil)
     var inputFavoriteButtonClicked: Observable<String> = Observable("")
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
@@ -31,11 +29,13 @@ final class CoinChartViewModel {
         inputFavoriteButtonClicked.bind { id in
             self.favoriteStatusToggle(id: id)
         }
-        inputViewDidLoadTrigger.bind { _ in
-            if let id = self.outputCoinMarket.value?.id {
+        inputCoinMarket.bind { value in
+            if let id = self.inputCoinMarket.value?.id {
                 self.fetchFavoriteStatus(id: id)
             }
-            if let id = self.inputCoinMarket.value?.id {
+        }
+        inputViewDidLoadTrigger.bind { _ in
+            if let id = self.outputCoinMarket.value?.id {
                 self.fetchFavoriteStatus(id: id)
             }
         }
@@ -43,10 +43,10 @@ final class CoinChartViewModel {
     
     private func fetchFavoriteStatus(id: String) {
         let list = repository.fetchFavoriteItem().filter { $0.id == id }
-        if list.count > 0 {
-            outputFavoriteStatus.value = true
-        } else {
+        if list.isEmpty {
             outputFavoriteStatus.value = false
+        } else {
+            outputFavoriteStatus.value = true
         }
     }
     
@@ -62,8 +62,10 @@ final class CoinChartViewModel {
             repository.subtractFavorite(id: id)
             outputFavoriteStatus.value = false
         } else {
-            repository.addFavorite(id: id)
+            guard let item = outputCoinMarket.value else { return }
+            repository.addFavorite(item: item)
             outputFavoriteStatus.value = true
         }
     }
 }
+

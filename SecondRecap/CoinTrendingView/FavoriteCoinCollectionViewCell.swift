@@ -78,7 +78,7 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
     }
     
     func configureCell(item: CoinMarket) {
-        coinName.text = item.id
+        coinName.text = item.name
         let url = URL(string: item.image)
         icon.kf.setImage(with: url)
         coinSymbolname.text = item.symbol

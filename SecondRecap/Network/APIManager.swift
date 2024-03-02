@@ -20,6 +20,7 @@ class APIManager {
             switch success.result {
             case .success(let success):
                 completionHandler(success)
+                print(url)
             case .failure(let failure):
                 print(failure)
             }

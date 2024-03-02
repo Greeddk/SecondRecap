@@ -11,6 +11,7 @@ final class CoinChartViewController: BaseViewController {
     
     let mainView = CoinChartView()
     let viewModel = CoinChartViewModel()
+    var delegate: reloadFavorite?
     
     let favoriteButton = UIBarButtonItem()
     
@@ -25,21 +26,9 @@ final class CoinChartViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        transform()
-    }
-    
-    override func configureViewController() {
-        favoriteButton.image = UIImage(named: image)?.withRenderingMode(.alwaysOriginal)
-        favoriteButton.target = self
-        favoriteButton.action = #selector(favoriteButtonClicked)
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.rightBarButtonItem = favoriteButton
-    }
-    
-    private func transform() {
-        if let coinmarket = coinMarket {
-            mainView.inputData(coinmarket)
-            viewModel.inputCoinMarket.value = coinmarket
+        if let coinMarket = coinMarket {
+            mainView.inputData(coinMarket)
+            viewModel.inputCoinMarket.value = coinMarket
         }
         viewModel.inputId.value = id
         viewModel.outputCoinMarket.bind { value in
@@ -50,6 +39,7 @@ final class CoinChartViewController: BaseViewController {
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.outputFavoriteStatus.bind { value in
             self.isFavorite = value
+            print(self.isFavorite)
             if self.isFavorite {
                 self.image = "btn_star_fill"
             } else {
@@ -59,10 +49,28 @@ final class CoinChartViewController: BaseViewController {
         }
     }
     
+    override func configureViewController() {
+        favoriteButton.image = UIImage(named: image)?.withRenderingMode(.alwaysOriginal)
+        favoriteButton.target = self
+        favoriteButton.action = #selector(favoriteButtonClicked)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = favoriteButton
+        navigationController?.navigationItem.setHidesBackButton(true, animated: true)
+        navigationController?.navigationBar.tintColor = .primary
+        let customBackButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(customBackButtonClicked))
+        navigationItem.leftBarButtonItem = customBackButton
+    }
+    
     @objc
     private func favoriteButtonClicked() {
         guard let coinId = coinMarket?.id else { return }
         viewModel.inputFavoriteButtonClicked.value = coinId
+    }
+    
+    @objc
+    private func customBackButtonClicked() {
+        delegate?.fetchFavoriteList()
+        navigationController?.popViewController(animated: true)
     }
 
 }

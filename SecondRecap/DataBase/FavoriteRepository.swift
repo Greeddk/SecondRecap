@@ -12,11 +12,14 @@ class FavoriteRepository {
     
     private var realm = try! Realm()
     
-    func addFavorite(id: String) {
-        let item = FavoriteCoin(id)
+    func addFavorite(item: CoinMarket) {
+        let favoriteCoin = FavoriteCoin(id: item.id, name: item.name, image: item.image, symbol: item.symbol, current_price: item.current_price, change_percentage: item.change_percentage, low: item.low, high: item.high, ath: item.ath, atl: item.atl, last_updated: item.last_updated)
+        for value in item.sparkline.price {
+            favoriteCoin.sparkline.append(value)
+        }
         do {
             try realm.write {
-                realm.add(item)
+                realm.add(favoriteCoin)
             }
         } catch {
             print(error)

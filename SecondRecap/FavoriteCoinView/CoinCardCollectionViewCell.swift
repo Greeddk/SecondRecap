@@ -52,7 +52,7 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
         }
         
         changePercentage.snp.makeConstraints { make in
-            make.width.equalTo(60)
+            make.width.equalTo(70)
             make.height.equalTo(25)
             make.trailing.bottom.equalTo(backView).inset(12)
         }
@@ -72,7 +72,6 @@ class CoinCardCollectionViewCell: BaseCollectionViewCell {
         backView.layer.shadowColor = UIColor.black.cgColor
         backView.layer.cornerRadius = 12
         backView.backgroundColor = .customWhite
-        
         coinName.font = .boldSystemFont(ofSize: 17)
         coinName.textColor = .customBlack
         coinSymbolname.font = .systemFont(ofSize: 12)

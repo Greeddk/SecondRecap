@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol reloadFavorite {
+    func fetchFavoriteList()
+}
+
 class FavoriteCoinViewController: BaseViewController {
     
     let mainView = FavoriteCoinView()
@@ -20,17 +24,18 @@ class FavoriteCoinViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadFavorite()
     }
     
+    //TODO: 뷰 들어왔을 때부터 뻬이보릿 리스트가 나타나게
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "Favorite Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
+        reloadFavorite()
     }
     
     private func reloadFavorite() {
-        viewModel.inputViewWillAppearTrigger.value = ()
+        viewModel.inputFetchFavoriteListTrigger.value = ()
         viewModel.outputFavoriteList.bind { value in
             guard let value = value else { return }
             self.favoriteList = value
@@ -64,4 +69,10 @@ extension FavoriteCoinViewController: UICollectionViewDelegate, UICollectionView
         navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+extension FavoriteCoinViewController: reloadFavorite {
+    func fetchFavoriteList() {
+        reloadFavorite()
+    }
 }

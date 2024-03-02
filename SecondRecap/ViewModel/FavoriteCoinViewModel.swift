@@ -12,29 +12,27 @@ class FavoriteCoinViewModel {
     let repository = FavoriteRepository()
     let apiManager = APIManager.shared
     
-    var inputViewWillAppearTrigger: Observable<Void?> = Observable(nil)
+    var inputFetchFavoriteListTrigger: Observable<Void?> = Observable(nil)
     
     var outputFavoriteList: Observable<Array<CoinMarket>?> = Observable(nil)
     
     init() {
-        inputViewWillAppearTrigger.bind { _ in
-            self.requestFavoriteCoinsCall()
+        inputFetchFavoriteListTrigger.bind { _ in
+            self.fetchFavoriteCoinList()
         }
     }
     
-    private func requestFavoriteCoinsCall() {
-        let favoriteItems = repository.fetchFavoriteItem()
-        var tmpId = ""
-        for item in favoriteItems {
-            if item == favoriteItems.last {
-                tmpId.append(item.id)
-            } else {
-                tmpId.append(item.id + ",")
-            }
+    private func fetchFavoriteCoinList() {
+        print(#function)
+        outputFavoriteList.value = nil
+        let list = repository.fetchFavoriteItem()
+        var tmpList: [CoinMarket] = []
+        for item in list {
+            let sparkline = Array(item.sparkline)
+            var tmpItem: CoinMarket = CoinMarket(id: item.id, name: item.name, image: item.image, symbol: item.symbol, current_price: item.current_price, change_percentage: item.change_percentage, low: item.low, high: item.high, ath: item.ath, atl: item.atl, last_updated: item.last_updated, sparkline: Price(price: sparkline))
+            tmpList.append(tmpItem)
         }
-        apiManager.callRequest(type: [CoinMarket].self, api: .coinInfo(id: tmpId)) { value in
-            self.outputFavoriteList.value = value
-        }
+        outputFavoriteList.value = tmpList
     }
     
 }

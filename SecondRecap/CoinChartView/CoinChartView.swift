@@ -239,6 +239,7 @@ extension CoinChartView {
     private func changeNumberFormat(number: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 7
         return formatter.string(from: number as NSNumber)!
     }
     

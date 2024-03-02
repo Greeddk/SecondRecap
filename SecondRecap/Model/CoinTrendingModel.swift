@@ -12,7 +12,11 @@ struct CoinTrending: Decodable {
     let nfts: [NFT]
 }
 
-struct Item: Decodable {
+struct Item: Decodable, Equatable {
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        lhs.item.id == rhs.item.id
+    }
+    
     let item: Coin
 }
 
