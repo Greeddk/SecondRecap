@@ -59,6 +59,7 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
         coinName.snp.makeConstraints { make in
             make.top.equalTo(icon)
             make.leading.equalTo(icon.snp.trailing).offset(8)
+            make.trailing.lessThanOrEqualTo(backView).inset(8)
         }
         
         coinSymbolname.snp.makeConstraints { make in
@@ -83,5 +84,8 @@ class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
         icon.kf.setImage(with: url)
         coinSymbolname.text = item.symbol
         price.text = "₩\(item.current_price)"
+        changePercentage.textColor = item.change_percentage < 0 ? .blueForLow : .redForHigh
+        let sign = item.change_percentage >= 0 ? "+" : ""
+        changePercentage.text = sign + String(format: "%.2f", item.change_percentage) + "%"
     }
 }

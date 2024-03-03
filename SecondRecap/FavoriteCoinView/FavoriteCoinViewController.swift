@@ -24,14 +24,13 @@ class FavoriteCoinViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadFavorite()
     }
     
-    //TODO: 뷰 들어왔을 때부터 뻬이보릿 리스트가 나타나게
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "Favorite Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
-        reloadFavorite()
     }
     
     private func reloadFavorite() {
@@ -66,6 +65,7 @@ extension FavoriteCoinViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CoinChartViewController()
         vc.coinMarket = favoriteList[indexPath.item]
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     

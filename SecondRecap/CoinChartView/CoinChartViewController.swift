@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 final class CoinChartViewController: BaseViewController {
     
@@ -46,6 +47,9 @@ final class CoinChartViewController: BaseViewController {
                 self.image = "btn_star"
             }
             self.favoriteButton.image = UIImage(named: self.image)?.withRenderingMode(.alwaysOriginal)
+        }
+        viewModel.outputToastMessage.bind { message in
+            self.view.makeToast(message, duration: 3, position: .bottom)
         }
     }
     

@@ -41,4 +41,25 @@ class FavoriteRepository {
         return Array(realm.objects(FavoriteCoin.self))
     }
     
+    func updateItem(id: String, updateValue: CoinMarket) {
+        guard let item = realm.objects(FavoriteCoin.self).filter({ $0.id == id }).first else { return }
+        do {
+            try realm.write {
+                item.current_price = updateValue.current_price
+                item.change_percentage = updateValue.change_percentage
+                item.high = updateValue.high
+                item.low = updateValue.low
+                item.last_updated = updateValue.last_updated
+                item.ath = updateValue.ath
+                item.atl = updateValue.atl
+                item.sparkline.removeAll()
+                for value in updateValue.sparkline.price {
+                    item.sparkline.append(value)
+                }
+            }
+        } catch {
+            print("update 오류", error)
+        }
+    }
+    
 }

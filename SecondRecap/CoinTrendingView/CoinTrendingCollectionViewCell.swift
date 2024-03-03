@@ -59,13 +59,13 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         price.snp.makeConstraints { make in
             make.top.equalTo(coinName)
             make.trailing.equalToSuperview().offset(-12)
-            make.width.greaterThanOrEqualTo(30)
+            make.width.greaterThanOrEqualTo(70)
         }
         
         changePercentage.snp.makeConstraints { make in
             make.top.equalTo(coinSymbolname)
             make.trailing.equalTo(price.snp.trailing)
-            make.width.greaterThanOrEqualTo(30)
+            make.width.greaterThanOrEqualTo(60)
         }
         
         lineView.snp.makeConstraints { make in
@@ -84,7 +84,9 @@ class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         coinSymbolname.font = .systemFont(ofSize: 12)
         coinSymbolname.textColor = .customLightBlack
         price.textColor = .customBlack
+        
         changePercentage.text = "+0.64%"
+        
     }
     
 }
@@ -102,11 +104,13 @@ extension CoinTrendingCollectionViewCell {
         let attributedString = data.price.asAttributedString()
         price.attributedText = attributedString
         price.font = .systemFont(ofSize: 15)
+        price.textAlignment = .right
         let percentage = data.change_percentage.krw
         changePercentage.textColor = percentage < 0 ? .blueForLow : .redForHigh
         let sign = percentage >= 0 ? "+" : ""
         changePercentage.text = sign + String(format: "%.2f", data.change_percentage.krw) + "%"
         changePercentage.font = .systemFont(ofSize: 12)
+        changePercentage.textAlignment = .right
         if indexPath.item % 3 == 2 {
             lineView.backgroundColor = .clear
         } else {
@@ -122,11 +126,13 @@ extension CoinTrendingCollectionViewCell {
         icon.kf.setImage(with: url)
         price.text = item.data.floor_price
         price.font = .systemFont(ofSize: 15)
+        price.textAlignment = .right
         guard let text = changePercentage.text?.first else { return }
         changePercentage.textColor = text == "-" ? .blueForLow : .redForHigh
         let sign = text != "-" ? "+" : ""
         changePercentage.text = sign + String(format: "%.2f", Double(item.data.change_percentage) ?? 0) + "%"
         changePercentage.font = .systemFont(ofSize: 12)
+        changePercentage.textAlignment = .right
         if indexPath.item % 3 == 2 {
             lineView.backgroundColor = .clear
         } else {

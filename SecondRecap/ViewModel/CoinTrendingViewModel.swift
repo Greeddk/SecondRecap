@@ -13,7 +13,6 @@ final class CoinTrendingViewModel {
     let repository = FavoriteRepository()
 
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
-    var inputFavoriteListTrigger: Observable<Void?> = Observable(nil)
     var inputFavoriteListReloadDataTrigger: Observable<Void?> = Observable(nil)
     
     var outputList: Observable<CoinTrending> = Observable(CoinTrending(coins: [], nfts: []))
@@ -23,30 +22,10 @@ final class CoinTrendingViewModel {
     init() {
         inputViewDidLoadTrigger.bind { _ in
             self.requestTrendingCall()
-        }
-        inputFavoriteListTrigger.bind { _ in
             self.requestFavoriteCoinsCall()
         }
-//        inputFavoriteListReloadDataTrigger.bind { _ in
-//            let originFavorite = self.repository.fetchFavoriteItem()
-//            if originFavorite.count > self.outputFavoriteList.value.count {
-//                //하나가 제거된 상황
-//                self.outputFavoriteList.value = self.outputFavoriteList.value.map{ $0.id }.intersection(originFavorite.map { $0.id })
-//            } else if originFavorite.count < self.outputFavoriteList.value.count {
-//                //하나가 추가된 상황
-//            }
-//        }
         inputFavoriteListReloadDataTrigger.bind { _ in
-            let originFavorite = self.repository.fetchFavoriteItem()
-            
-            // outputFavoriteList와 originFavorite 간의 공통된 ID 추출
-            let commonIds = Set(self.outputFavoriteList.value.map { $0.id })
-                .intersection(originFavorite.map { $0.id })
-            
-            // outputFavoriteList를 공통 요소만 포함하도록 필터링
-            let filteredList = self.outputFavoriteList.value.filter { commonIds.contains($0.id) }
-            
-            self.outputFavoriteList.value = filteredList
+            self.fetchFavoriteCoinList()
         }
 
     }
@@ -82,7 +61,7 @@ final class CoinTrendingViewModel {
             }
         }
     }
-    
+    //TODO: call 호출이 2번 안되게 설정이 필요
     private func requestFavoriteCoinsCall() {
         callFavoriteCoinsList()
         _ = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(callFavoriteCoinsList), userInfo: nil, repeats: true)
@@ -90,6 +69,7 @@ final class CoinTrendingViewModel {
     
     @objc
     private func callFavoriteCoinsList() {
+        //TODO: 콜을 받아서 realm 데이터를 업데이트 시켜서 fetchFavoriteCoinList를 실행
         let favoriteItems = repository.fetchFavoriteItem()
         if favoriteItems.count != 0 {
             print(#function)
@@ -102,9 +82,25 @@ final class CoinTrendingViewModel {
                 }
             }
             apiManager.callRequest(type: [CoinMarket].self, api: .coinInfo(id: tmpId)) { value in
-                self.outputFavoriteList.value = value
+                for item in value {
+                    self.repository.updateItem(id: item.id, updateValue: item)
+                }
+                self.fetchFavoriteCoinList()
             }
         }
+    }
+    
+    private func fetchFavoriteCoinList() {
+        print(#function)
+        outputFavoriteList.value = []
+        let list = repository.fetchFavoriteItem()
+        var tmpList: [CoinMarket] = []
+        for item in list {
+            let sparkline = Array(item.sparkline)
+            var tmpItem: CoinMarket = CoinMarket(id: item.id, name: item.name, image: item.image, symbol: item.symbol, current_price: item.current_price, change_percentage: item.change_percentage, low: item.low, high: item.high, ath: item.ath, atl: item.atl, last_updated: item.last_updated, sparkline: Price(price: sparkline))
+            tmpList.append(tmpItem)
+        }
+        outputFavoriteList.value = tmpList
     }
     
 }

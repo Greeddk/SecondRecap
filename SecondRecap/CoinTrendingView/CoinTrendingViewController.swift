@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 final class CoinTrendingViewController: BaseViewController {
     
     var favoriteList: [CoinMarket] = []
@@ -29,11 +30,12 @@ final class CoinTrendingViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "Crypto Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
-        viewModel.inputFavoriteListReloadDataTrigger.value = ()
+        reloadFavorite()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadFavorite()
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.outputList.bind { value in
             self.trendingList = value
@@ -46,11 +48,10 @@ final class CoinTrendingViewController: BaseViewController {
             self.favoriteList = value
             self.mainView.tableView.reloadSections([0], with: .none)
         }
-        reloadFavorite()
     }
     
     private func reloadFavorite() {
-        viewModel.inputFavoriteListTrigger.value = ()
+        viewModel.inputFavoriteListReloadDataTrigger.value = ()
     }
     
     override func configureViewController() {
@@ -171,9 +172,16 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
             let vc = CoinChartViewController()
 //            let market = topFifteenList.filter { $0.id == trendingList.coins[indexPath.item].item.id }
 //            vc.coinMarket = market.first
+            vc.delegate = self
             vc.id = trendingList.coins[indexPath.item].item.id
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     
+}
+
+extension CoinTrendingViewController: reloadFavorite {
+    func fetchFavoriteList() {
+        reloadFavorite()
+    }
 }

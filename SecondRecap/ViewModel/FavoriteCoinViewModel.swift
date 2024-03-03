@@ -23,7 +23,6 @@ class FavoriteCoinViewModel {
     }
     
     private func fetchFavoriteCoinList() {
-        print(#function)
         outputFavoriteList.value = nil
         let list = repository.fetchFavoriteItem()
         var tmpList: [CoinMarket] = []

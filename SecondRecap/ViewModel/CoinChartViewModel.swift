@@ -20,6 +20,7 @@ final class CoinChartViewModel {
     
     var outputCoinMarket: Observable<CoinMarket?> = Observable(nil)
     var outputFavoriteStatus: Observable<Bool> = Observable(false)
+    var outputToastMessage: Observable<String?> = Observable(nil)
     
     init() {
         inputId.bind { value in
@@ -57,14 +58,20 @@ final class CoinChartViewModel {
     }
     
     private func favoriteStatusToggle(id: String) {
-        let list = repository.fetchFavoriteItem().filter { $0.id == id }
-        if list.count > 0 {
-            repository.subtractFavorite(id: id)
-            outputFavoriteStatus.value = false
+        if repository.fetchFavoriteItem().count == 0 {
+            outputToastMessage.value = "즐겨찾기는 최대 10개의 코인까지만 가능합니다."
         } else {
-            guard let item = outputCoinMarket.value else { return }
-            repository.addFavorite(item: item)
-            outputFavoriteStatus.value = true
+            let list = repository.fetchFavoriteItem().filter { $0.id == id }
+            if list.count > 0 {
+                repository.subtractFavorite(id: id)
+                outputFavoriteStatus.value = false
+                outputToastMessage.value = "\(String(describing: list.first?.name))이/가 즐겨찾기에서 제거됐습니다."
+            } else {
+                guard let item = outputCoinMarket.value else { return }
+                repository.addFavorite(item: item)
+                outputFavoriteStatus.value = true
+                outputToastMessage.value = "\(String(describing: list.first?.name))이/가 즐겨찾기에 추가됐습니다."
+            }
         }
     }
 }
