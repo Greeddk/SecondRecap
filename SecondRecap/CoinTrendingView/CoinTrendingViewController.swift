@@ -30,13 +30,11 @@ final class CoinTrendingViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "Crypto Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
-        print("viewWillAppear")
         reloadFavorite()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         reloadFavorite()
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.outputList.bind { value in
@@ -172,18 +170,11 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
             }
         } else if collectionView.tag == 1 {
             let vc = CoinChartViewController()
-//            let market = topFifteenList.filter { $0.id == trendingList.coins[indexPath.item].item.id }
-//            vc.coinMarket = market.first
-//            vc.delegate = self
-            vc.id = trendingList.coins[indexPath.item].item.id
+            let market = topFifteenList.filter { $0.id == trendingList.coins[indexPath.item].item.id }
+            vc.coinMarket = market.first
+//            vc.id = trendingList.coins[indexPath.item].item.id
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     
 }
-
-//extension CoinTrendingViewController: reloadFavorite {
-//    func fetchFavoriteList() {
-//        reloadFavorite()
-//    }
-//}

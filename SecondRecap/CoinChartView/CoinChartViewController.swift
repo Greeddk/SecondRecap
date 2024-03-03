@@ -40,7 +40,6 @@ final class CoinChartViewController: BaseViewController {
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.outputFavoriteStatus.bind { value in
             self.isFavorite = value
-            print(self.isFavorite)
             if self.isFavorite {
                 self.image = "btn_star_fill"
             } else {
@@ -49,7 +48,7 @@ final class CoinChartViewController: BaseViewController {
             self.favoriteButton.image = UIImage(named: self.image)?.withRenderingMode(.alwaysOriginal)
         }
         viewModel.outputToastMessage.bind { message in
-            self.view.makeToast(message, duration: 3, position: .bottom)
+            self.view.makeToast(message, duration: 2, position: .bottom)
         }
     }
     

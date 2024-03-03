@@ -21,7 +21,6 @@ final class CoinTrendingViewModel {
     
     init() {
         inputViewDidLoadTrigger.apiBind { _ in
-            print("inputViewDidLoadTrigger")
             self.requestTrendingCall()
             self.requestFavoriteCoinsCall()
         }
@@ -39,7 +38,6 @@ final class CoinTrendingViewModel {
     @objc 
     private func callTrending()
     {
-        print(#function)
         var topFifteen: [Item] = []
         let group = DispatchGroup()
         group.enter()
@@ -62,7 +60,7 @@ final class CoinTrendingViewModel {
             }
         }
     }
-    //TODO: call 호출이 2번 안되게 설정이 필요
+
     private func requestFavoriteCoinsCall() {
         callFavoriteCoinsList()
         _ = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(callFavoriteCoinsList), userInfo: nil, repeats: true)
@@ -70,10 +68,8 @@ final class CoinTrendingViewModel {
     
     @objc
     private func callFavoriteCoinsList() {
-        //TODO: 콜을 받아서 realm 데이터를 업데이트 시켜서 fetchFavoriteCoinList를 실행
         let favoriteItems = repository.fetchFavoriteItem()
         if favoriteItems.count != 0 {
-            print(#function)
             var tmpId = ""
             for item in favoriteItems {
                 if item == favoriteItems.last {
@@ -92,7 +88,6 @@ final class CoinTrendingViewModel {
     }
     
     private func fetchFavoriteCoinList() {
-        print(#function)
         outputFavoriteList.value = []
         let list = repository.fetchFavoriteItem()
         var tmpList: [CoinMarket] = []

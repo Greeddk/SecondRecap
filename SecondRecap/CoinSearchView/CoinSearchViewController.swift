@@ -13,6 +13,7 @@ class CoinSearchViewController: BaseViewController {
     let mainView = CoinSearchView()
     let viewModel = CoinSearchViewModel()
     var resultList: [Coin] = []
+    var favoriteList: [FavoriteCoin] = []
     
     override func loadView() {
         self.view = mainView
@@ -25,7 +26,10 @@ class CoinSearchViewController: BaseViewController {
             self.mainView.tableView.reloadData()
         }
         viewModel.outputToastMessage.bind { message in
-            self.view.makeToast(message, duration: 3, position: .bottom)
+            self.view.makeToast(message, duration: 2, position: .bottom)
+        }
+        viewModel.outputFavoriteList.bind { value in
+            self.favoriteList = value
         }
     }
     
@@ -57,16 +61,17 @@ extension CoinSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchedCoinTableViewCell.identifier, for: indexPath) as! SearchedCoinTableViewCell
         let item = resultList[indexPath.row]
-        viewModel.inputFavoriteStatusTrigger.value = item.id
-        cell.configureCell(item, attributeString: viewModel.outputSearchText.value ?? "", isFavorite: viewModel.outputFavoriteStatus.value)
+        let isFavorite = favoriteList.contains { $0.id == item.id }
+        cell.configureCell(item, attributeString: viewModel.outputSearchText.value ?? "", isFavorite: isFavorite)
         cell.favoriteButton.tag = indexPath.row
-        cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked(sender: )), for: .touchUpInside)
+        cell.favoriteButton.addAction(UIAction(handler: { _ in
+            self.viewModel.inputFavoriteButtonClicked.value = item.id
+            self.viewModel.inputIndex.value = indexPath.row
+            self.viewModel.inputFavoriteListRequest.value = ()
+            let value = self.favoriteList.contains { $0.id == item.id }
+            cell.changeImage(value: value)
+        }), for: .touchUpInside)
         return cell
-    }
-    
-    @objc
-    func favoriteButtonClicked(sender: UIButton) {
-        viewModel.inputFavoriteButtonClicked.value = resultList[sender.tag].id
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

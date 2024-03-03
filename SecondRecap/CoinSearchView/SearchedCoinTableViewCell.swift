@@ -58,6 +58,7 @@ class SearchedCoinTableViewCell: BaseTableViewCell {
         coinName.textColor = .customBlack
         coinSymbolname.font = .systemFont(ofSize: 12)
         coinSymbolname.textColor = .customLightBlack
+        favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)
     }
     
 }
@@ -70,6 +71,14 @@ extension SearchedCoinTableViewCell {
         coinName.attributedText = changeAllOccurrence(entireString: item.name, searchString: attributeString)
         coinSymbolname.text = item.symbol
         if isFavorite {
+            favoriteButton.setImage(UIImage(named: "btn_star_fill"), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)
+        }
+    }
+    
+    func changeImage(value: Bool) {
+        if value {
             favoriteButton.setImage(UIImage(named: "btn_star_fill"), for: .normal)
         } else {
             favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)

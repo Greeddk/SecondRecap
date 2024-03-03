@@ -60,19 +60,19 @@ final class CoinChartViewModel {
     private func favoriteStatusToggle(id: String) {
         let list = repository.fetchFavoriteItem().filter { $0.id == id }
         if list.count > 0 {
-            if repository.fetchFavoriteItem().count == 10 {
+            guard let name = list.first?.name else { return }
+            outputToastMessage.value = "\(String(describing: name))이/가 즐겨찾기에서 제거됐습니다."
+            outputFavoriteStatus.value = false
+            repository.subtractFavorite(id: id)
+        } else {
+            if repository.fetchFavoriteItem().count >= 10 {
                 outputToastMessage.value = "즐겨찾기는 최대 10개의 코인까지만 가능합니다."
             } else {
-                guard let name = list.first?.name else { return }
-                outputToastMessage.value = "\(String(describing: name))이/가 즐겨찾기에서 제거됐습니다."
-                outputFavoriteStatus.value = false
-                repository.subtractFavorite(id: id)
+                guard let item = outputCoinMarket.value else { return }
+                repository.addFavorite(item: item)
+                outputFavoriteStatus.value = true
+                outputToastMessage.value = "\(String(describing: item.name))이/가 즐겨찾기에 추가됐습니다."
             }
-        } else {
-            guard let item = outputCoinMarket.value else { return }
-            repository.addFavorite(item: item)
-            outputFavoriteStatus.value = true
-            outputToastMessage.value = "\(String(describing: item.name))이/가 즐겨찾기에 추가됐습니다."
         }
     }
     

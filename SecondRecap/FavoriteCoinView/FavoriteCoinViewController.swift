@@ -24,13 +24,13 @@ class FavoriteCoinViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadFavorite()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "Favorite Coin"
         navigationController?.navigationBar.prefersLargeTitles = true
+        reloadFavorite()
     }
     
     private func reloadFavorite() {
