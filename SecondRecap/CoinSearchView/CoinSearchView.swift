@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CoinSearchView: BaseView {
+final class CoinSearchView: BaseView {
 
     let searchBar = UISearchBar()
     let tableView = UITableView()

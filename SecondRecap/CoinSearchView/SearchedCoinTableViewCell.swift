@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class SearchedCoinTableViewCell: BaseTableViewCell {
+final class SearchedCoinTableViewCell: BaseTableViewCell {
     
     let icon = UIImageView()
     let coinName = UILabel()

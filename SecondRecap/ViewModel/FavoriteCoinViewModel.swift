@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FavoriteCoinViewModel {
+final class FavoriteCoinViewModel {
     
     let repository = FavoriteRepository()
     let apiManager = APIManager.shared

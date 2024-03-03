@@ -11,7 +11,7 @@ protocol reloadFavorite {
     func fetchFavoriteList()
 }
 
-class FavoriteCoinViewController: BaseViewController {
+final class FavoriteCoinViewController: BaseViewController {
     
     let mainView = FavoriteCoinView()
     let viewModel = FavoriteCoinViewModel()

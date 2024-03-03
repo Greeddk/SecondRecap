@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CoinTrendingTableViewCell: BaseTableViewCell {
+final class CoinTrendingTableViewCell: BaseTableViewCell {
     
     let sectionLabel = UILabel()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())

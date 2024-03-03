@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class FavoriteRepository {
+final class FavoriteRepository {
     
     private var realm = try! Realm()
     

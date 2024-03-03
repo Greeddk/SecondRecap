@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
+final class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     
     let rank = UILabel()
     let icon = UIImageView()

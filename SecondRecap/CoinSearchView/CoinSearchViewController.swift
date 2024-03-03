@@ -8,7 +8,7 @@
 import UIKit
 import Toast
 
-class CoinSearchViewController: BaseViewController {
+final class CoinSearchViewController: BaseViewController {
     
     let mainView = CoinSearchView()
     let viewModel = CoinSearchViewModel()

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FavoriteCoinView: BaseView {
+final class FavoriteCoinView: BaseView {
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     

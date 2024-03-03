@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class APIManager {
+final class APIManager {
     
     static let shared = APIManager()
     // TODO: 실패경우 핸들링, 타이머!

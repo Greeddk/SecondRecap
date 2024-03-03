@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CoinTrendingView: BaseView {
+final class CoinTrendingView: BaseView {
     
     let tableView = UITableView()
 

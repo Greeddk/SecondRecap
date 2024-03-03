@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FavoriteTableViewCell: BaseTableViewCell {
+final class FavoriteTableViewCell: BaseTableViewCell {
     
     let sectionLabel = UILabel()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())

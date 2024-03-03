@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
+final class FavoriteCoinCollectionViewCell: BaseCollectionViewCell {
     
     let backView = UIView()
     let icon = UIImageView()

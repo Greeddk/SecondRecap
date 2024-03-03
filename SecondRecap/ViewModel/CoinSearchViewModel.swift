@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CoinSearchViewModel {
+final class CoinSearchViewModel {
     
     let apiManager = APIManager.shared
     let repository = FavoriteRepository()

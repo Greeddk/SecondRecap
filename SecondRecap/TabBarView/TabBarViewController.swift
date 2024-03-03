@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
+final class TabBarViewController: UITabBarController {
     
     enum TabBarMenu: CaseIterable {
         case coinTrending

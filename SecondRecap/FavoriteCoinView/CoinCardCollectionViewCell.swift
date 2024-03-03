@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class CoinCardCollectionViewCell: BaseCollectionViewCell {
+final class CoinCardCollectionViewCell: BaseCollectionViewCell {
     
     let backView = UIView()
     let icon = UIImageView()
