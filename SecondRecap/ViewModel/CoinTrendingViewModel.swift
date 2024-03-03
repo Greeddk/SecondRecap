@@ -20,11 +20,12 @@ final class CoinTrendingViewModel {
     var outputTopFifteenList: Observable<Array<CoinMarket>> = Observable([])
     
     init() {
-        inputViewDidLoadTrigger.bind { _ in
+        inputViewDidLoadTrigger.apiBind { _ in
+            print("inputViewDidLoadTrigger")
             self.requestTrendingCall()
             self.requestFavoriteCoinsCall()
         }
-        inputFavoriteListReloadDataTrigger.bind { _ in
+        inputFavoriteListReloadDataTrigger.apiBind { _ in
             self.fetchFavoriteCoinList()
         }
 

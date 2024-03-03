@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class CoinSearchViewController: BaseViewController {
     
@@ -22,6 +23,9 @@ class CoinSearchViewController: BaseViewController {
         viewModel.outputSearchResult.bind { value in
             self.resultList = value.coins
             self.mainView.tableView.reloadData()
+        }
+        viewModel.outputToastMessage.bind { message in
+            self.view.makeToast(message, duration: 3, position: .bottom)
         }
     }
     
@@ -53,8 +57,16 @@ extension CoinSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchedCoinTableViewCell.identifier, for: indexPath) as! SearchedCoinTableViewCell
         let item = resultList[indexPath.row]
-        cell.configureCell(item, attributeString: viewModel.outputSearchText.value ?? "")
+        viewModel.inputFavoriteStatusTrigger.value = item.id
+        cell.configureCell(item, attributeString: viewModel.outputSearchText.value ?? "", isFavorite: viewModel.outputFavoriteStatus.value)
+        cell.favoriteButton.tag = indexPath.row
+        cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked(sender: )), for: .touchUpInside)
         return cell
+    }
+    
+    @objc
+    func favoriteButtonClicked(sender: UIButton) {
+        viewModel.inputFavoriteButtonClicked.value = resultList[sender.tag].id
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

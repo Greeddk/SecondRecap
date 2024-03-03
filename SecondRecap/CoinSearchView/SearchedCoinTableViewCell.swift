@@ -63,13 +63,17 @@ class SearchedCoinTableViewCell: BaseTableViewCell {
 }
 
 extension SearchedCoinTableViewCell {
-    func configureCell(_ item: Coin, attributeString: String) {
+    func configureCell(_ item: Coin, attributeString: String, isFavorite: Bool) {
         guard let thumb = item.thumb else { return }
         let url = URL(string: thumb)
         icon.kf.setImage(with: url)
         coinName.attributedText = changeAllOccurrence(entireString: item.name, searchString: attributeString)
         coinSymbolname.text = item.symbol
-        favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)
+        if isFavorite {
+            favoriteButton.setImage(UIImage(named: "btn_star_fill"), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "btn_star"), for: .normal)
+        }
     }
     
     private func changeAllOccurrence(entireString: String,searchString: String) -> NSMutableAttributedString{
