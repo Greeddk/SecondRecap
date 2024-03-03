@@ -25,7 +25,7 @@ final class FavoriteRepository {
             print(error)
         }
     }
-    //TODO: object error 해결(indexpath에 item 먼저 제거하고 제거해줘야함)
+    
     func subtractFavorite(id: String) {
         let targetItem = realm.objects(FavoriteCoin.self).filter { $0.id == id }
         do {

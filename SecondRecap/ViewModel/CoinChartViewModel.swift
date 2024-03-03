@@ -68,10 +68,16 @@ final class CoinChartViewModel {
             if repository.fetchFavoriteItem().count >= 10 {
                 outputToastMessage.value = "즐겨찾기는 최대 10개의 코인까지만 가능합니다."
             } else {
-                guard let item = outputCoinMarket.value else { return }
-                repository.addFavorite(item: item)
-                outputFavoriteStatus.value = true
-                outputToastMessage.value = "\(String(describing: item.name))이/가 즐겨찾기에 추가됐습니다."
+                if let item = outputCoinMarket.value {
+                    repository.addFavorite(item: item)
+                    outputFavoriteStatus.value = true
+                    outputToastMessage.value = "\(String(describing: item.name))이/가 즐겨찾기에 추가됐습니다."
+                }
+                if let item = inputCoinMarket.value {
+                    repository.addFavorite(item: item)
+                    outputFavoriteStatus.value = true
+                    outputToastMessage.value = "\(String(describing: item.name))이/가 즐겨찾기에 추가됐습니다."
+                }
             }
         }
     }

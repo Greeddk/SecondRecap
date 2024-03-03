@@ -230,7 +230,6 @@ final class CoinChartView: BaseView {
         chart.marker = circleMarker
         //chart 실행시 에니메이션
         chart.animate(xAxisDuration: 1, easingOption: .easeInCubic)
-        //TODO: chart highlight line 제거 하기
     }
     
 }
