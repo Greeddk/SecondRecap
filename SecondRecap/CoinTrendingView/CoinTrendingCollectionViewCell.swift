@@ -59,7 +59,7 @@ final class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         price.snp.makeConstraints { make in
             make.top.equalTo(coinName)
             make.trailing.equalToSuperview().offset(-12)
-            make.width.greaterThanOrEqualTo(70)
+            make.width.equalTo(100)
         }
         
         changePercentage.snp.makeConstraints { make in
@@ -101,7 +101,7 @@ extension CoinTrendingCollectionViewCell {
         coinName.text = item.name
         coinSymbolname.text = item.symbol
         guard let data = item.data else { return }
-        let attributedString = data.price.asAttributedString()
+        let attributedString = String(data.price).asAttributedString()
         price.attributedText = attributedString
         price.font = .systemFont(ofSize: 15)
         price.textAlignment = .right

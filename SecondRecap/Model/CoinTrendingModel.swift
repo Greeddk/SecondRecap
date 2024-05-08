@@ -48,7 +48,7 @@ struct NFT: Decodable {
 }
 
 struct CoinPrice: Decodable {
-    let price: String
+    let price: Double
     let change_percentage: ChangePercent
     
     enum CodingKeys: String, CodingKey {

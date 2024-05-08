@@ -558,7 +558,7 @@
 				DEVELOPMENT_TEAM = HR74YJR7W4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SecondRecap/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CoinWorld;
+				INFOPLIST_KEY_CFBundleDisplayName = "오늘의코인";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -575,6 +575,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -591,7 +592,7 @@
 				DEVELOPMENT_TEAM = HR74YJR7W4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SecondRecap/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CoinWorld;
+				INFOPLIST_KEY_CFBundleDisplayName = "오늘의코인";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -608,6 +609,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

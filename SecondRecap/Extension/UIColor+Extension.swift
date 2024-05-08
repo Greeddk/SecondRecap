@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIColor {
-    static let primary = UIColor(hexCode: "914CF5")
+//    static let primary = UIColor(hexCode: "914CF5")
+    static let primary = UIColor(hexCode: "4CE5B1")
     static let redForHigh = UIColor(hexCode: "F04452")
     static let lightRed = UIColor(hexCode: "FFEAED")
     static let blueForLow = UIColor(hexCode: "3282F8")

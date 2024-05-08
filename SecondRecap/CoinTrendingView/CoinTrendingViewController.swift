@@ -28,7 +28,7 @@ final class CoinTrendingViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "Crypto Coin"
+        navigationItem.title = "오늘의 코인"
         navigationController?.navigationBar.prefersLargeTitles = true
         reloadFavorite()
     }
@@ -172,7 +172,7 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
             let vc = CoinChartViewController()
             let market = topFifteenList.filter { $0.id == trendingList.coins[indexPath.item].item.id }
             vc.coinMarket = market.first
-//            vc.id = trendingList.coins[indexPath.item].item.id
+            vc.id = trendingList.coins[indexPath.item].item.id
             navigationController?.pushViewController(vc, animated: true)
         }
     }

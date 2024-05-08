@@ -10,7 +10,7 @@ import RealmSwift
 
 final class FavoriteRepository {
     
-    private var realm = try! Realm()
+    private let realm = try! Realm()
     
     func addFavorite(item: CoinMarket) {
         let favoriteCoin = FavoriteCoin(id: item.id, name: item.name, image: item.image, symbol: item.symbol, current_price: item.current_price, change_percentage: item.change_percentage, low: item.low, high: item.high, ath: item.ath, atl: item.atl, last_updated: item.last_updated)
