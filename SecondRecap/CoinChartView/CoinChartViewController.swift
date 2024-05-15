@@ -45,7 +45,7 @@ final class CoinChartViewController: BaseViewController {
             } else {
                 self.image = "btn_star"
             }
-            self.favoriteButton.image = UIImage(named: self.image)?.withRenderingMode(.alwaysOriginal)
+            self.favoriteButton.image = UIImage(named: self.image)!.withRenderingMode(.alwaysTemplate)
         }
         viewModel.outputToastMessage.bind { message in
             self.view.makeToast(message, duration: 2, position: .bottom)
@@ -53,7 +53,8 @@ final class CoinChartViewController: BaseViewController {
     }
     
     override func configureViewController() {
-        favoriteButton.image = UIImage(named: image)?.withRenderingMode(.alwaysOriginal)
+        favoriteButton.image = UIImage(named: image)!.withRenderingMode(.alwaysTemplate)
+        favoriteButton.tintColor = .primary
         favoriteButton.target = self
         favoriteButton.action = #selector(favoriteButtonClicked)
         navigationController?.navigationBar.prefersLargeTitles = false

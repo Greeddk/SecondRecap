@@ -28,7 +28,7 @@ final class FavoriteCoinViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "Favorite Coin"
+        navigationItem.title = "즐겨찾기한 코인"
         navigationController?.navigationBar.prefersLargeTitles = true
         reloadFavorite()
     }

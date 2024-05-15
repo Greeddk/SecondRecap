@@ -14,7 +14,7 @@ final class CoinTrendingViewController: BaseViewController {
     var topFifteenList: [CoinMarket] = []
     
     enum HeaderTitle: String, CaseIterable {
-        case favorite = "My Favorite"
+        case favorite = "즐겨찾기 코인"
         case top15 = "Top15 Coin"
         case top7 = "Top7 NFT"
     }
@@ -83,7 +83,7 @@ extension CoinTrendingViewController: UITableViewDelegate, UITableViewDataSource
                 cell.collectionView.delegate = self
                 cell.collectionView.dataSource = self
                 cell.collectionView.tag = indexPath.section
-                cell.collectionView.register(FavoriteCoinCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteCoinCollectionViewCell.identifier)
+                cell.collectionView.register(CoinCardCollectionViewCell.self, forCellWithReuseIdentifier: CoinCardCollectionViewCell.identifier)
                 cell.collectionView.reloadData()
                 return cell
             }
@@ -133,7 +133,7 @@ extension CoinTrendingViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.tag == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCoinCollectionViewCell.identifier, for: indexPath) as! FavoriteCoinCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinCardCollectionViewCell.identifier, for: indexPath) as! CoinCardCollectionViewCell
             if indexPath.item == 3 {
                 cell.icon.image = nil
                 cell.coinName.text = "더보기"

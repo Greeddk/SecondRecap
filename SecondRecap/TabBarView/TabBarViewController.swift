@@ -67,16 +67,16 @@ final class TabBarViewController: UITabBarController {
         let settingVC = menuList[3].viewContollerType
         
         trendVC.tabBarItem.image = UIImage(named: menuList[0].inactiveMenuImage)?.withRenderingMode(.alwaysOriginal)
-        trendVC.tabBarItem.selectedImage = UIImage(named: menuList[0].activeMenuImage)?.withRenderingMode(.alwaysOriginal)
+        trendVC.tabBarItem.selectedImage = UIImage(named: menuList[0].activeMenuImage)
         trendVC.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0)
         searchVC.tabBarItem.image = UIImage(named: menuList[1].inactiveMenuImage)?.withRenderingMode(.alwaysOriginal)
-        searchVC.tabBarItem.selectedImage = UIImage(named: menuList[1].activeMenuImage)?.withRenderingMode(.alwaysOriginal)
+        searchVC.tabBarItem.selectedImage = UIImage(named: menuList[1].activeMenuImage)
         searchVC.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0)
         favoriteVC.tabBarItem.image = UIImage(named: menuList[2].inactiveMenuImage)?.withRenderingMode(.alwaysOriginal)
-        favoriteVC.tabBarItem.selectedImage = UIImage(named: menuList[2].activeMenuImage)?.withRenderingMode(.alwaysOriginal)
+        favoriteVC.tabBarItem.selectedImage = UIImage(named: menuList[2].activeMenuImage)
         favoriteVC.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0)
         settingVC.tabBarItem.image = UIImage(named: menuList[3].inactiveMenuImage)?.withRenderingMode(.alwaysOriginal)
-        settingVC.tabBarItem.selectedImage = UIImage(named: menuList[3].activeMenuImage)?.withRenderingMode(.alwaysOriginal)
+        settingVC.tabBarItem.selectedImage = UIImage(named: menuList[3].activeMenuImage)
         settingVC.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0)
         
         let appearance = UITabBarAppearance()
@@ -85,6 +85,7 @@ final class TabBarViewController: UITabBarController {
         tabBar.scrollEdgeAppearance = appearance
         tabBar.layer.borderColor = UIColor.customLightGray.cgColor
         tabBar.layer.borderWidth = 1
+        tabBar.tintColor = .primary
         setViewControllers([trendVC, searchVC, favoriteVC, settingVC], animated: true)
         
     }

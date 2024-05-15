@@ -50,10 +50,12 @@ struct NFT: Decodable {
 struct CoinPrice: Decodable {
     let price: Double
     let change_percentage: ChangePercent
+    let sparkline: String
     
     enum CodingKeys: String, CodingKey {
         case price
         case change_percentage = "price_change_percentage_24h"
+        case sparkline
     }
 }
 

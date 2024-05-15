@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import Kingfisher
 
 final class CoinCardCollectionViewCell: BaseCollectionViewCell {
@@ -16,6 +17,7 @@ final class CoinCardCollectionViewCell: BaseCollectionViewCell {
     let coinSymbolname = UILabel()
     let price = UILabel()
     let changePercentage = UILabel()
+    let chart = CustomChartView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +29,7 @@ final class CoinCardCollectionViewCell: BaseCollectionViewCell {
     
     override func configureHierarchy() {
         contentView.addSubviews([backView])
-        backView.addSubviews([icon, coinName, coinSymbolname, price, changePercentage])
+        backView.addSubviews([icon, coinName, coinSymbolname, price, changePercentage, chart])
     }
     
     override func configureLayout() {
@@ -51,15 +53,22 @@ final class CoinCardCollectionViewCell: BaseCollectionViewCell {
             make.top.equalTo(coinName.snp.bottom)
         }
         
-        changePercentage.snp.makeConstraints { make in
-            make.width.equalTo(70)
-            make.height.equalTo(25)
-            make.trailing.bottom.equalTo(backView).inset(12)
+        price.snp.makeConstraints { make in
+            make.top.equalTo(coinSymbolname.snp.bottom).offset(2)
+            make.trailing.equalTo(changePercentage.snp.leading).offset(-10)
         }
         
-        price.snp.makeConstraints { make in
-            make.trailing.equalTo(changePercentage.snp.trailing)
-            make.bottom.equalTo(changePercentage.snp.top).offset(-4)
+        changePercentage.snp.makeConstraints { make in
+            make.centerY.equalTo(price)
+            make.trailing.equalTo(backView.snp.trailing).offset(-10)
+            make.width.equalTo(50)
+            make.height.equalTo(20)
+        }
+        
+        chart.snp.makeConstraints { make in
+            make.top.equalTo(price.snp.bottom)
+            make.horizontalEdges.equalTo(contentView)
+            make.bottom.equalTo(backView.snp.bottom)
         }
         
     }
@@ -77,7 +86,7 @@ final class CoinCardCollectionViewCell: BaseCollectionViewCell {
         coinSymbolname.font = .systemFont(ofSize: 12)
         coinSymbolname.textColor = .customLightBlack
         price.textColor = .customBlack
-        price.font = .boldSystemFont(ofSize: 17)
+        price.font = .boldSystemFont(ofSize: 14)
         changePercentage.text = "+0.64%"
         changePercentage.font = .boldSystemFont(ofSize: 12)
         changePercentage.clipsToBounds = true
@@ -95,6 +104,7 @@ final class CoinCardCollectionViewCell: BaseCollectionViewCell {
         changePercentage.backgroundColor = item.change_percentage >= 0  ? .lightRed : .lightBlue
         let sign = item.change_percentage >= 0 ? "+" : " "
         changePercentage.text = sign + String(format: "%.2f",item.change_percentage) + "%"
+        chart.configureChart(item)
     }
     
 }

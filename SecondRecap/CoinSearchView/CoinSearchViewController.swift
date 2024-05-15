@@ -35,7 +35,7 @@ final class CoinSearchViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "Search"
+        navigationItem.title = "코인 검색"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

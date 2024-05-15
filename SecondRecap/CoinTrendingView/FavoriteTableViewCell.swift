@@ -55,7 +55,7 @@ extension FavoriteTableViewCell {
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
-        layout.itemSize = CGSize(width: 220, height: 180)
+        layout.itemSize = CGSize(width: 220, height: 170)
         layout.scrollDirection = .horizontal
         return layout
     }

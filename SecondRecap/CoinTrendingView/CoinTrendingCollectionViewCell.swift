@@ -33,7 +33,7 @@ final class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
     
     override func configureLayout() {
         rank.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).offset(34)
+            make.leading.equalTo(contentView).offset(22)
             make.centerY.equalToSuperview()
             make.width.equalTo(25)
         }
@@ -59,7 +59,7 @@ final class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         price.snp.makeConstraints { make in
             make.top.equalTo(coinName)
             make.trailing.equalToSuperview().offset(-12)
-            make.width.equalTo(100)
+            make.width.equalTo(70)
         }
         
         changePercentage.snp.makeConstraints { make in
@@ -86,7 +86,6 @@ final class CoinTrendingCollectionViewCell: BaseCollectionViewCell {
         price.textColor = .customBlack
         
         changePercentage.text = "+0.64%"
-        
     }
     
 }
@@ -101,8 +100,11 @@ extension CoinTrendingCollectionViewCell {
         coinName.text = item.name
         coinSymbolname.text = item.symbol
         guard let data = item.data else { return }
-        let attributedString = String(data.price).asAttributedString()
-        price.attributedText = attributedString
+        if data.price > 100 {
+            price.text = String(format:"%.2f", data.price) + "$"
+        } else {
+            price.text = String(format:"%.4f", data.price) + "$"
+        }
         price.font = .systemFont(ofSize: 15)
         price.textAlignment = .right
         let percentage = data.change_percentage.krw

@@ -46,7 +46,7 @@ final class CoinTrendingTableViewCell: BaseTableViewCell {
     }
 
     func collectionViewLayout() -> UICollectionViewLayout {
-        let cellWidth = UIScreen.main.bounds.width - 70
+        let cellWidth = UIScreen.main.bounds.width - 60
         let spacing:CGFloat = 10
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = spacing
